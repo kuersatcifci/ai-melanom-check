@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ML model artifacts (too large for git, store outside or use LFS)
+/onnx_model/
+/public/models/
