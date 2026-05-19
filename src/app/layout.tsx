@@ -29,6 +29,45 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <header className="border-b">
+          <nav
+            aria-label="Hauptnavigation"
+            className="mx-auto flex w-full max-w-3xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-4 text-sm"
+          >
+            <Link
+              href="/"
+              className="font-semibold tracking-tight hover:text-foreground"
+            >
+              AI Melanom Check
+            </Link>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground sm:ml-auto">
+              <Link
+                href="/demo"
+                className="hover:text-foreground hover:underline underline-offset-2"
+              >
+                Demo
+              </Link>
+              <Link
+                href="/methods"
+                className="hover:text-foreground hover:underline underline-offset-2"
+              >
+                Methoden
+              </Link>
+              <Link
+                href="/impressum"
+                className="hover:text-foreground hover:underline underline-offset-2"
+              >
+                Impressum
+              </Link>
+              <Link
+                href="/datenschutz"
+                className="hover:text-foreground hover:underline underline-offset-2"
+              >
+                Datenschutz
+              </Link>
+            </div>
+          </nav>
+        </header>
         <div className="flex-1">{children}</div>
         <footer className="border-t mt-8">
           <div className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-center gap-4 px-6 py-4 text-muted-foreground text-sm">
