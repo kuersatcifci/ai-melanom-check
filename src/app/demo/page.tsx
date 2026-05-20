@@ -27,6 +27,15 @@ type SessionRef = {
   backend: "webgpu" | "wasm";
 };
 
+type TrafficLight = "green" | "yellow" | "red";
+
+const CONFIDENCE_THRESHOLD = 0.6;
+
+function getTrafficLight(top: Prediction): TrafficLight {
+  if (top.probability <= CONFIDENCE_THRESHOLD) return "yellow";
+  return top.malignant ? "red" : "green";
+}
+
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new window.Image();
@@ -47,10 +56,12 @@ export default function DemoPage() {
   const [backend, setBackend] = useState<"webgpu" | "wasm" | null>(null);
   const [predictions, setPredictions] = useState<Prediction[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const handleFile = useCallback((file: File) => {
     setError(null);
     setPredictions(null);
+    setDetailsOpen(false);
 
     if (!file.type.startsWith("image/")) {
       setError("Bitte eine Bilddatei auswählen (JPG oder PNG).");
@@ -102,6 +113,7 @@ export default function DemoPage() {
     if (!previewUrl) return;
     setError(null);
     setPredictions(null);
+    setDetailsOpen(false);
 
     try {
       const { session } = await ensureSession();
@@ -125,12 +137,15 @@ export default function DemoPage() {
     setFileName(null);
     setPredictions(null);
     setError(null);
+    setDetailsOpen(false);
     if (inputRef.current) inputRef.current.value = "";
   };
 
   const sorted = predictions
     ? [...predictions].sort((a, b) => b.probability - a.probability)
     : null;
+
+  const trafficLight = sorted ? getTrafficLight(sorted[0]) : null;
 
   const isBusy = phase !== "idle";
   const analyzeLabel =
@@ -160,6 +175,13 @@ export default function DemoPage() {
           <CardDescription>JPG oder PNG, maximal 10 MB.</CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
+          <p className="bg-muted/50 text-muted-foreground rounded-md border p-3 text-xs leading-relaxed">
+            <span className="text-foreground font-medium">Tipp:</span>{" "}
+            Fotografieren Sie nur die Hautveränderung, möglichst nah und ohne
+            störende Objekte im Bild. Nutzen Sie wenn möglich
+            Dermatoskopie-Aufnahmen.
+          </p>
+
           <label
             htmlFor="file-input"
             onDragOver={(e) => e.preventDefault()}
@@ -237,49 +259,129 @@ export default function DemoPage() {
         </CardContent>
       </Card>
 
-      {sorted && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Ergebnis</CardTitle>
-            <CardDescription>
-              Geschätzte Wahrscheinlichkeiten je Klasse. Keine medizinische
-              Aussage.
-              {backend && (
-                <>
-                  {" "}
-                  Backend:{" "}
-                  <span className="font-mono uppercase">{backend}</span>.
-                </>
-              )}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3">
-            {sorted.map((p) => (
-              <div key={p.code} className="flex flex-col gap-1">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="flex items-center gap-2">
-                    <span className="font-medium">{p.label}</span>
-                    <span
-                      className={
-                        "rounded px-1.5 py-0.5 text-[10px] font-medium " +
-                        (p.malignant
-                          ? "bg-destructive/10 text-destructive"
-                          : "bg-muted text-muted-foreground")
-                      }
-                    >
-                      {p.malignant ? "maligne" : "benigne"}
-                    </span>
-                  </span>
-                  <span className="text-muted-foreground tabular-nums">
-                    {(p.probability * 100).toFixed(1)} %
-                  </span>
-                </div>
-                <Progress value={p.probability * 100} />
+      {sorted && trafficLight && (
+        <section className="flex flex-col gap-4" aria-live="polite">
+          <TrafficLightBlock light={trafficLight} />
+
+          <p className="text-muted-foreground rounded-md border border-dashed p-3 text-xs leading-relaxed">
+            Diese Ausgabe ist kein medizinischer Befund. Softmax-Werte sind
+            keine klinischen Wahrscheinlichkeiten. Bei Unsicherheit immer
+            Hautarzt aufsuchen.
+          </p>
+
+          <Card>
+            <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">
+              <div className="flex flex-col gap-1">
+                <CardTitle className="text-base">
+                  Technische Details (alle Klassen)
+                </CardTitle>
+                {backend && (
+                  <CardDescription>
+                    Backend:{" "}
+                    <span className="font-mono uppercase">{backend}</span>
+                  </CardDescription>
+                )}
               </div>
-            ))}
-          </CardContent>
-        </Card>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setDetailsOpen((v) => !v)}
+                aria-expanded={detailsOpen}
+                aria-controls="technical-details"
+              >
+                {detailsOpen ? "Details ausblenden" : "Details anzeigen"}
+              </Button>
+            </CardHeader>
+            {detailsOpen && (
+              <CardContent
+                id="technical-details"
+                className="flex flex-col gap-3"
+              >
+                <p className="text-muted-foreground text-xs">
+                  Die Prozentwerte sind Modell-Konfidenzwerte, keine
+                  medizinischen Wahrscheinlichkeiten.
+                </p>
+                {sorted.map((p) => (
+                  <div key={p.code} className="flex flex-col gap-1">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="flex items-center gap-2">
+                        <span className="font-medium">{p.label}</span>
+                        <span
+                          className={
+                            "rounded px-1.5 py-0.5 text-[10px] font-medium " +
+                            (p.malignant
+                              ? "bg-destructive/10 text-destructive"
+                              : "bg-muted text-muted-foreground")
+                          }
+                        >
+                          {p.malignant ? "maligne" : "benigne"}
+                        </span>
+                      </span>
+                      <span className="text-muted-foreground tabular-nums">
+                        {(p.probability * 100).toFixed(1)} %
+                      </span>
+                    </div>
+                    <Progress value={p.probability * 100} />
+                  </div>
+                ))}
+              </CardContent>
+            )}
+          </Card>
+        </section>
       )}
     </main>
+  );
+}
+
+function TrafficLightBlock({ light }: { light: TrafficLight }) {
+  const config = {
+    green: {
+      container:
+        "border-emerald-600/30 bg-emerald-50 text-emerald-900 dark:border-emerald-400/30 dark:bg-emerald-950/40 dark:text-emerald-50",
+      icon: "✓",
+      iconBg:
+        "bg-emerald-600 text-white dark:bg-emerald-500",
+      title: "Kein auffälliger Befund",
+      body: "Das Modell ordnet dieses Bild einer unauffälligen Kategorie zu.",
+    },
+    yellow: {
+      container:
+        "border-amber-600/30 bg-amber-50 text-amber-900 dark:border-amber-400/30 dark:bg-amber-950/40 dark:text-amber-50",
+      icon: "⚠",
+      iconBg: "bg-amber-500 text-white",
+      title: "Ergebnis unsicher",
+      body: "Das Modell kann keine eindeutige Zuordnung treffen.",
+    },
+    red: {
+      container:
+        "border-red-600/30 bg-red-50 text-red-900 dark:border-red-400/30 dark:bg-red-950/40 dark:text-red-50",
+      icon: "⚠",
+      iconBg: "bg-red-600 text-white",
+      title: "Bitte ärztlich abklären",
+      body: "Das Modell ordnet dieses Bild einer auffälligen Kategorie zu. Dies ist keine Diagnose.",
+    },
+  }[light];
+
+  return (
+    <div
+      role="status"
+      className={
+        "flex items-start gap-4 rounded-lg border-2 p-5 " + config.container
+      }
+    >
+      <div
+        aria-hidden="true"
+        className={
+          "flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl font-bold " +
+          config.iconBg
+        }
+      >
+        {config.icon}
+      </div>
+      <div className="flex flex-col gap-1">
+        <p className="text-lg font-semibold leading-tight">{config.title}</p>
+        <p className="text-sm leading-relaxed opacity-90">{config.body}</p>
+      </div>
+    </div>
   );
 }
