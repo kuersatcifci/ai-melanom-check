@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
+import { CheckCircle2 } from "lucide-react";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { Button } from "@/components/ui/button";
 import {
@@ -228,6 +229,29 @@ export default function DemoPage() {
               </div>
             </li>
           </ol>
+
+          <div className="border-border/60 flex flex-col gap-3 rounded-md border bg-muted/30 p-4">
+            <h3 className="font-heading text-base font-medium">
+              Datenschutz &amp; Datenspeicherung
+            </h3>
+            <ul className="flex flex-col gap-2.5">
+              {[
+                "Ihre Bilder werden nicht gespeichert. Die Verarbeitung erfolgt ausschließlich in Ihrem Browser.",
+                "Es werden keine Bilder übertragen. Weder an unsere Server noch an Dritte.",
+                "Nach dem Schließen des Tabs sind alle Daten weg. Es gibt keine Datenbank, keinen Account, keine Protokollierung.",
+                "ONNX Runtime Web führt die KI-Inferenz lokal auf Ihrem Gerät aus.",
+              ].map((item) => (
+                <li key={item} className="flex gap-2.5 text-sm leading-relaxed">
+                  <CheckCircle2
+                    className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400"
+                    aria-hidden="true"
+                    strokeWidth={2}
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <p className="rounded-md border border-amber-600/30 bg-amber-50 p-3 text-sm leading-relaxed text-amber-900 dark:border-amber-400/30 dark:bg-amber-950/40 dark:text-amber-50">
             Diese Demo ist für Bildungszwecke entwickelt. Die Ergebnisse sind
