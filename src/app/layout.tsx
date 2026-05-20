@@ -54,6 +54,12 @@ export default function RootLayout({
                 Methoden
               </Link>
               <Link
+                href="/risk"
+                className="hover:text-foreground hover:underline underline-offset-2"
+              >
+                Risiken
+              </Link>
+              <Link
                 href="/impressum"
                 className="hover:text-foreground hover:underline underline-offset-2"
               >
