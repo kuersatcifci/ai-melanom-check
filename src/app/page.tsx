@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, LockKeyhole, BrainCircuit, Gauge } from "lucide-react";
-import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { CLASSES } from "@/lib/classes";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -112,13 +111,16 @@ export default function Home() {
                   <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 <a
-                  href="mailto:k_cifci@web.de"
+                  href="https://kuersatcifci.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={
                     buttonVariants({ variant: "outline", size: "lg" }) +
-                    " h-12 px-6 text-sm"
+                    " group h-12 px-6 text-sm"
                   }
                 >
-                  Beratung anfragen
+                  Mehr über mich
+                  <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
             </div>
@@ -205,10 +207,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div className="mx-auto w-full max-w-3xl px-6">
-        <DisclaimerBanner />
-      </div>
 
       <section className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-20">
         <span className="text-primary text-xs uppercase tracking-[0.22em]">
