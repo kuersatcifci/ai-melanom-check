@@ -124,8 +124,12 @@ export default function RootLayout({
               </div>
             </div>
 
-            <div className="border-border/60 text-muted-foreground mt-10 border-t pt-6 text-xs">
-              © {new Date().getFullYear()} Kürsat Cifci. Kein Medizinprodukt.
+            <div className="border-border/60 text-muted-foreground mt-10 border-t pt-6 text-xs leading-relaxed">
+              AI Melanom Check ist eine browserbasierte KI-Demonstration zu
+              Bildungs- und Forschungszwecken. Kein Medizinprodukt nach MDR
+              (EU 2017/745). Keine medizinische Diagnose. Ersetzt keine
+              ärztliche Untersuchung. Bei verdächtigen Hautveränderungen suchen
+              Sie bitte eine dermatologische Praxis auf.
             </div>
           </div>
         </footer>

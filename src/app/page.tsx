@@ -88,16 +88,16 @@ export default function Home() {
                 Hautläsions-Klassifikator · Demo
               </div>
 
-              <h1 className="text-balance font-heading text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-                Sieben Klassen.{" "}
-                <span className="text-primary italic">Ein Modell.</span>{" "}
-                Ein Browser-Tab.
+              <h1 className="text-balance font-heading text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+                AI Melanom Check — KI trifft auf{" "}
+                <span className="text-primary italic">Compliance</span>, live im
+                Browser.
               </h1>
 
               <p className="text-muted-foreground max-w-xl text-base leading-relaxed sm:text-lg">
-                Eine transparente Demonstration, wie ein vortrainierter Vision-
-                Transformer dermatoskopische Bilder einordnet — vollständig
-                lokal, ohne Server, ohne Diagnose-Anspruch.
+                Browser-basierte KI-Demo zur Hautläsionsklassifikation als
+                Compliance-Demonstrator für den EU AI Act. Kein Medizinprodukt.
+                Kein Upload. Keine Diagnose.
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
@@ -108,18 +108,18 @@ export default function Home() {
                     " group h-12 px-6 text-sm"
                   }
                 >
-                  Demo starten
+                  Demo jetzt starten
                   <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
-                <Link
-                  href="/methods"
+                <a
+                  href="mailto:k_cifci@web.de"
                   className={
                     buttonVariants({ variant: "outline", size: "lg" }) +
                     " h-12 px-6 text-sm"
                   }
                 >
-                  Methoden &amp; Modellkarte
-                </Link>
+                  Beratung anfragen
+                </a>
               </div>
             </div>
 
@@ -209,6 +209,61 @@ export default function Home() {
       <div className="mx-auto w-full max-w-3xl px-6">
         <DisclaimerBanner />
       </div>
+
+      <section className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-20">
+        <span className="text-primary text-xs uppercase tracking-[0.22em]">
+          Einführung
+        </span>
+        <h2 className="font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+          Was ist das hier?
+        </h2>
+        <p className="text-foreground/85 text-base leading-relaxed sm:text-lg">
+          AI Melanom Check ist eine Demonstration künstlicher Intelligenz für
+          die Hautbild-Analyse. Sie laden ein Foto einer Hautstelle hoch. Ein
+          trainiertes Computerprogramm vergleicht das Bild mit über 10.000
+          dermatoskopischen Aufnahmen, die Hautärztinnen und -ärzte beschriftet
+          haben. Das Programm ordnet Ihr Bild einer von sieben Kategorien zu
+          und zeigt, wie ähnlich Ihr Bild den gelernten Beispielen ist.
+        </p>
+        <p className="text-muted-foreground text-base leading-relaxed">
+          <span className="text-foreground font-medium">Wichtig:</span> Diese
+          App ist ein Lernwerkzeug, kein Medizinprodukt. Sie liefert keine
+          Diagnose, ersetzt keinen Arztbesuch und sollte nicht für
+          gesundheitliche Entscheidungen verwendet werden.
+        </p>
+      </section>
+
+      <section className="border-border/60 bg-muted/30 border-y">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-20">
+          <span className="text-primary text-xs uppercase tracking-[0.22em]">
+            Über den Entwickler
+          </span>
+          <blockquote className="font-heading text-balance text-2xl font-medium leading-[1.25] tracking-tight sm:text-3xl">
+            Der EU AI Act ist kein Tech-Thema. Er ist ein{" "}
+            <span className="text-primary italic">Kommunikationsthema</span>.
+          </blockquote>
+          <p className="text-foreground/85 text-base leading-relaxed">
+            Ich habe Information Science studiert (wie Wissen strukturiert
+            wird), Onlinekommunikation (wie Botschaften wirken) und
+            Gesundheitskommunikation (wie Menschen befähigt werden, gute
+            Gesundheitsentscheidungen zu treffen). Diese drei Perspektiven sind
+            genau das, was Pharma-Compliance braucht, um KI auditfähig
+            einzusetzen: Daten verstehen, Risiken kommunizieren, Menschen
+            befähigen.
+          </p>
+          <footer className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
+            — Kürsat Cifci,{" "}
+            <a
+              href="https://kuersatcifci.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:text-primary underline-offset-4 hover:underline"
+            >
+              kuersatcifci.de
+            </a>
+          </footer>
+        </div>
+      </section>
 
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-20">
         <div className="flex flex-col gap-3">

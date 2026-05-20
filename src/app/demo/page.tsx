@@ -353,6 +353,11 @@ export default function DemoPage() {
         <section className="flex flex-col gap-4" aria-live="polite">
           <TrafficLightBlock light={trafficLight} />
 
+          <ResultExplanation
+            label={sorted[0].label}
+            percent={Math.round(sorted[0].probability * 100)}
+          />
+
           <p className="text-muted-foreground rounded-md border border-dashed p-3 text-xs leading-relaxed">
             Diese Ausgabe ist kein medizinischer Befund. Softmax-Werte sind
             keine klinischen Wahrscheinlichkeiten. Bei Unsicherheit immer
@@ -473,5 +478,53 @@ function TrafficLightBlock({ light }: { light: TrafficLight }) {
         <p className="text-sm leading-relaxed opacity-90">{config.body}</p>
       </div>
     </div>
+  );
+}
+
+function ResultExplanation({
+  label,
+  percent,
+}: {
+  label: string;
+  percent: number;
+}) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">
+          Was bedeutet dieses Ergebnis?
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3 text-sm leading-relaxed">
+        <p>
+          Das Programm findet auf Ihrem Bild Muster, die zu{" "}
+          <span className="font-semibold tabular-nums">{percent} %</span> denen
+          ähneln, die es in den Lernbildern für{" "}
+          <span className="font-medium">{label}</span> gesehen hat.
+        </p>
+        <p>
+          <span className="text-destructive font-semibold">
+            Das heißt NICHT:
+          </span>{" "}
+          Sie haben mit{" "}
+          <span className="font-semibold tabular-nums">{percent} %</span>{" "}
+          Wahrscheinlichkeit diese Erkrankung.
+        </p>
+        <p>
+          <span className="font-semibold">Das heißt:</span> Von 100
+          vergleichbaren Bildern wären{" "}
+          <span className="font-semibold tabular-nums">{percent}</span> als{" "}
+          <span className="font-medium">{label}</span> beschriftet gewesen – die
+          anderen als etwas anderes. Liegen mehrere Werte nah beieinander, ist
+          das Programm unsicher.
+        </p>
+        <p className="border-primary/30 bg-primary/5 text-foreground mt-1 rounded-md border-l-2 p-3">
+          <span className="text-primary mr-1" aria-hidden="true">
+            ➜
+          </span>
+          Bei jedem auffälligen Hautfleck: zur Hautärztin oder zum Hautarzt.
+        </p>
+      </CardContent>
+    </Card>
   );
 }
