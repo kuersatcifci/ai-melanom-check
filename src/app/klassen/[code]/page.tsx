@@ -43,7 +43,7 @@ export default async function ClassDetailPage({
   if (!klass) notFound();
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-12">
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-16">
       <nav aria-label="Breadcrumb" className="text-muted-foreground text-xs">
         <ol className="flex flex-wrap items-center gap-2">
           <li>
@@ -155,12 +155,15 @@ export default async function ClassDetailPage({
         </CardContent>
       </Card>
 
-      <div className="pt-2">
+      <div className="border-border/60 mt-2 border-t pt-8">
         <Link
           href="/"
-          className={buttonVariants({ variant: "outline", size: "lg" })}
+          className={
+            buttonVariants({ variant: "outline", size: "lg" }) +
+            " group h-12 px-6 text-sm"
+          }
         >
-          <ArrowLeft className="mr-1.5 h-4 w-4" />
+          <ArrowLeft className="mr-1.5 h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
           Zurück zur Startseite
         </Link>
       </div>

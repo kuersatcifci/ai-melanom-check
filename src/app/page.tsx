@@ -290,7 +290,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 pb-24">
+      <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-20">
         <Card>
           <CardHeader>
             <CardTitle className="font-heading text-2xl">

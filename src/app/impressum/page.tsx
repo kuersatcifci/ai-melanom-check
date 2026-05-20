@@ -1,7 +1,18 @@
 export default function ImpressumPage() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">Impressum</h1>
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-16">
+      <header className="flex flex-col gap-3">
+        <div className="text-primary flex items-center gap-3 text-xs uppercase tracking-[0.22em]">
+          <span aria-hidden="true" className="bg-primary h-px w-8" />
+          Rechtliches
+        </div>
+        <h1 className="font-heading text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
+          Impressum
+        </h1>
+        <p className="text-muted-foreground text-base leading-relaxed">
+          Angaben gemäß § 5 TMG.
+        </p>
+      </header>
 
       <section className="flex flex-col gap-1 text-base leading-relaxed">
         <p>Kürsat Cifci</p>
@@ -16,7 +27,7 @@ export default function ImpressumPage() {
           E-Mail:{" "}
           <a
             href="mailto:k_cifci@web.de"
-            className="underline underline-offset-2 hover:text-foreground"
+            className="hover:text-primary underline underline-offset-4"
           >
             k_cifci@web.de
           </a>

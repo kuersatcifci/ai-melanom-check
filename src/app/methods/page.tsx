@@ -44,10 +44,16 @@ function BulletList({ items }: { items: React.ReactNode[] }) {
 
 export default function MethodsPage() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-12">
-      <header className="flex flex-col gap-2">
-        <h1 className="text-3xl font-semibold tracking-tight">Modellkarte</h1>
-        <p className="text-muted-foreground text-sm leading-relaxed">
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-16">
+      <header className="flex flex-col gap-3">
+        <div className="text-primary flex items-center gap-3 text-xs uppercase tracking-[0.22em]">
+          <span aria-hidden="true" className="bg-primary h-px w-8" />
+          Transparenz
+        </div>
+        <h1 className="font-heading text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
+          Modellkarte
+        </h1>
+        <p className="text-muted-foreground text-base leading-relaxed">
           Transparenzdokument zu Modell, Trainingsdaten, Grenzen und Risiken.
           Diese Demo ist kein Medizinprodukt und nicht klinisch validiert.
         </p>

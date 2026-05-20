@@ -98,12 +98,16 @@ function SeverityBadge({ level }: { level: Severity }) {
 
 export default function RiskPage() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-12">
-      <header className="flex flex-col gap-2">
-        <h1 className="text-3xl font-semibold tracking-tight">
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-16">
+      <header className="flex flex-col gap-3">
+        <div className="text-primary flex items-center gap-3 text-xs uppercase tracking-[0.22em]">
+          <span aria-hidden="true" className="bg-primary h-px w-8" />
+          Sicherheit
+        </div>
+        <h1 className="font-heading text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
           Risikoregister
         </h1>
-        <p className="text-muted-foreground text-sm leading-relaxed">
+        <p className="text-muted-foreground text-base leading-relaxed">
           Bekannte Fehler- und Missbrauchsszenarien dieser Demo und die in der
           App umgesetzten Gegenmaßnahmen. Diese Übersicht ersetzt keine
           medizinische oder regulatorische Risikoanalyse.
