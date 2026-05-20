@@ -171,6 +171,74 @@ export default function DemoPage() {
 
       <Card>
         <CardHeader>
+          <CardTitle>So funktioniert die Demo</CardTitle>
+          <CardDescription>
+            In drei Schritten zur Modell-Einschätzung.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <ol className="flex flex-col gap-4">
+            <li className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="bg-primary text-primary-foreground flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold"
+              >
+                1
+              </span>
+              <div className="flex flex-col gap-1">
+                <p className="font-medium">Bild vorbereiten</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Fotografieren Sie die Hautveränderung möglichst nah und bei
+                  guter Beleuchtung. Nur die Veränderung sollte im Bild sein,
+                  keine störenden Objekte. Dermatoskopie-Aufnahmen liefern
+                  bessere Ergebnisse als Smartphone-Fotos.
+                </p>
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="bg-primary text-primary-foreground flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold"
+              >
+                2
+              </span>
+              <div className="flex flex-col gap-1">
+                <p className="font-medium">Bild hochladen</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Ziehen Sie das Bild in den Bereich unten oder klicken Sie
+                  darauf. JPG oder PNG, maximal 10 MB.
+                </p>
+              </div>
+            </li>
+            <li className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="bg-primary text-primary-foreground flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold"
+              >
+                3
+              </span>
+              <div className="flex flex-col gap-1">
+                <p className="font-medium">Ergebnis lesen</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Das System zeigt eine farbige Einschätzung. Grün ={" "}
+                  unauffällig, Gelb = unsicher, Rot = bitte ärztlich abklären.
+                  Unter „Details“ sehen Sie alle sieben Klassen mit
+                  technischen Konfidenzwerten.
+                </p>
+              </div>
+            </li>
+          </ol>
+
+          <p className="rounded-md border border-amber-600/30 bg-amber-50 p-3 text-sm leading-relaxed text-amber-900 dark:border-amber-400/30 dark:bg-amber-950/40 dark:text-amber-50">
+            Diese Demo ist für Bildungszwecke entwickelt. Die Ergebnisse sind
+            keine medizinischen Befunde. Bei echten Hautveränderungen immer
+            einen Dermatologen aufsuchen.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <CardTitle>Bild auswählen</CardTitle>
           <CardDescription>JPG oder PNG, maximal 10 MB.</CardDescription>
         </CardHeader>

@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { CLASSES } from "@/lib/classes";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,6 +9,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+const STEPS = [
+  {
+    icon: "📤",
+    title: "Bild hochladen",
+    text: "Laden Sie ein Foto einer Hautveränderung hoch. Die Verarbeitung erfolgt vollständig in Ihrem Browser – kein Bild wird übertragen.",
+  },
+  {
+    icon: "🤖",
+    title: "KI analysiert",
+    text: "Ein vortrainiertes Vision-Transformer-Modell klassifiziert das Bild in eine von sieben dermatologischen Kategorien.",
+  },
+  {
+    icon: "🚦",
+    title: "Ergebnis lesen",
+    text: "Sie erhalten eine farbige Einschätzung plus technische Details. Grün, Gelb oder Rot – mit klarer Erklärung was das bedeutet.",
+  },
+];
 
 export default function Home() {
   return (
@@ -24,6 +44,40 @@ export default function Home() {
           übertragen.
         </p>
       </header>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold tracking-tight">
+          Wie funktioniert die App?
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {STEPS.map((step) => (
+            <Card key={step.title}>
+              <CardHeader>
+                <div
+                  aria-hidden="true"
+                  className="text-3xl leading-none"
+                >
+                  {step.icon}
+                </div>
+                <CardTitle>{step.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {step.text}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="flex justify-center pt-2">
+          <Link
+            href="/demo"
+            className={buttonVariants({ variant: "default", size: "lg" })}
+          >
+            Demo starten
+          </Link>
+        </div>
+      </section>
 
       <Card>
         <CardHeader>
