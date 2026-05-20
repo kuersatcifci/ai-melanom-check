@@ -250,31 +250,33 @@ export default function Home() {
           <CardContent>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {CLASSES.map((c) => (
-                <li
-                  key={c.code}
-                  className="border-border/60 hover:border-primary/40 group flex flex-col gap-1.5 rounded-md border bg-card p-4 transition-colors"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-heading text-base font-medium">
-                      {c.label}
+                <li key={c.code}>
+                  <Link
+                    href={`/klassen/${c.code}`}
+                    className="border-border/60 hover:border-primary/60 hover:bg-accent/30 group flex h-full flex-col gap-1.5 rounded-md border bg-card p-4 transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-heading group-hover:text-primary text-base font-medium transition-colors">
+                        {c.label}
+                      </span>
+                      <span
+                        className={
+                          "shrink-0 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-wider " +
+                          (c.malignant
+                            ? "bg-destructive/10 text-destructive"
+                            : "bg-muted text-muted-foreground")
+                        }
+                      >
+                        {c.malignant ? "maligne" : "benigne"}
+                      </span>
+                    </div>
+                    <span className="text-muted-foreground text-xs leading-relaxed">
+                      {c.description}
                     </span>
-                    <span
-                      className={
-                        "shrink-0 rounded-full px-2 py-0.5 text-[10px] uppercase tracking-wider " +
-                        (c.malignant
-                          ? "bg-destructive/10 text-destructive"
-                          : "bg-muted text-muted-foreground")
-                      }
-                    >
-                      {c.malignant ? "maligne" : "benigne"}
-                    </span>
-                  </div>
-                  <span className="text-muted-foreground text-xs leading-relaxed">
-                    {c.description}
-                  </span>
-                  <code className="text-muted-foreground/70 mt-1 font-mono text-[10px] uppercase tracking-[0.18em]">
-                    {c.code}
-                  </code>
+                    <code className="text-muted-foreground/70 mt-1 font-mono text-[10px] uppercase tracking-[0.18em]">
+                      {c.code}
+                    </code>
+                  </Link>
                 </li>
               ))}
             </ul>

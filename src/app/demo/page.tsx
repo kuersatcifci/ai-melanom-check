@@ -231,15 +231,13 @@ export default function DemoPage() {
           </ol>
 
           <div className="border-border/60 flex flex-col gap-3 rounded-md border bg-muted/30 p-4">
-            <h3 className="font-heading text-base font-medium">
-              Datenschutz &amp; Datenspeicherung
-            </h3>
+            <h3 className="font-heading text-base font-medium">Datenschutz</h3>
             <ul className="flex flex-col gap-2.5">
               {[
-                "Ihre Bilder werden nicht gespeichert. Die Verarbeitung erfolgt ausschließlich in Ihrem Browser.",
-                "Es werden keine Bilder übertragen. Weder an unsere Server noch an Dritte.",
-                "Nach dem Schließen des Tabs sind alle Daten weg. Es gibt keine Datenbank, keinen Account, keine Protokollierung.",
-                "ONNX Runtime Web führt die KI-Inferenz lokal auf Ihrem Gerät aus.",
+                "Ihre Bilder werden nicht gespeichert",
+                "Keine Übertragung an Server oder Dritte",
+                "Nach Schließen des Tabs sind alle Daten weg – keine Datenbank, kein Account",
+                "KI-Inferenz läuft lokal auf Ihrem Gerät via ONNX Runtime Web",
               ].map((item) => (
                 <li key={item} className="flex gap-2.5 text-sm leading-relaxed">
                   <CheckCircle2

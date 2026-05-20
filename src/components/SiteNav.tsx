@@ -9,8 +9,6 @@ const LINKS = [
   { href: "/demo", label: "Demo" },
   { href: "/methods", label: "Methoden" },
   { href: "/risk", label: "Risiken" },
-  { href: "/impressum", label: "Impressum" },
-  { href: "/datenschutz", label: "Datenschutz" },
 ];
 
 function LogoMark({ className = "" }: { className?: string }) {
