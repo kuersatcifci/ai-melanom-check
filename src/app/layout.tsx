@@ -42,7 +42,7 @@ export default function RootLayout({
         <div className="flex-1">{children}</div>
         <footer className="border-t mt-16">
           <div className="mx-auto w-full max-w-6xl px-6 py-12">
-            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
               <div className="flex flex-col gap-3">
                 <p className="font-heading text-lg font-medium">
                   AI Melanom Check
@@ -69,7 +69,7 @@ export default function RootLayout({
 
               <div className="flex flex-col gap-3">
                 <p className="text-muted-foreground text-xs uppercase tracking-[0.18em]">
-                  App
+                  Ausprobieren
                 </p>
                 <ul className="flex flex-col gap-2 text-sm">
                   <li>
@@ -80,12 +80,20 @@ export default function RootLayout({
                       Demo
                     </Link>
                   </li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <p className="text-muted-foreground text-xs uppercase tracking-[0.18em]">
+                  Informationen
+                </p>
+                <ul className="flex flex-col gap-2 text-sm">
                   <li>
                     <Link
                       href="/klassen"
                       className="hover:text-primary text-foreground underline-offset-4 hover:underline"
                     >
-                      Klassen
+                      Alle Klassen
                     </Link>
                   </li>
                   <li>
@@ -96,6 +104,14 @@ export default function RootLayout({
                       Muttermale
                     </Link>
                   </li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <p className="text-muted-foreground text-xs uppercase tracking-[0.18em]">
+                  Modell &amp; Compliance
+                </p>
+                <ul className="flex flex-col gap-2 text-sm">
                   <li>
                     <Link
                       href="/methods"

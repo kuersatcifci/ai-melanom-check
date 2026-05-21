@@ -5,7 +5,7 @@ import { CLASSES } from "@/lib/classes";
 export const metadata = {
   title: "Hautläsionen im Überblick – AI Melanom Check",
   description:
-    "Sieben dermatoskopische Kategorien aus dem HAM10000-Datensatz: von gutartig bis bösartig mit Direktlinks zu detaillierten Beschreibungen und APA-7-Quellen.",
+    "Sieben dermatoskopische Kategorien erklärt: von Muttermal bis Melanom. Medizinisch fundiert, verständlich für alle.",
   alternates: { canonical: "/klassen" },
 };
 
@@ -37,7 +37,7 @@ export default function KlassenIndexPage() {
 
       <header className="flex max-w-3xl flex-col gap-4">
         <h1 className="font-heading text-balance text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
-          Hautläsionen im Überblick
+          Hautläsionen
         </h1>
         <p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
           Sieben dermatoskopische Kategorien aus dem HAM10000-Datensatz — von

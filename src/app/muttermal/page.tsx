@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/table";
 
 export const metadata = {
-  title: "Muttermale verstehen – Wann ist ein Muttermal gefährlich?",
+  title: "Muttermale verstehen – AI Melanom Check",
   description:
-    "Alles über Muttermale: Was ist normal, was ist verdächtig? ABCDE-Regel, Selbstuntersuchung, wann zum Hautarzt. Medizinisch fundiert, verständlich erklärt. Stand Mai 2026.",
+    "Wann ist ein Muttermal gefährlich? ABCDE-Regel, Selbstuntersuchung und wann zum Hautarzt. Stand Mai 2026.",
   alternates: { canonical: "/muttermal" },
 };
 
@@ -359,13 +359,19 @@ export default function MuttermalPage() {
               <div className="font-heading text-base font-medium leading-tight">
                 {rule.name}
               </div>
-              <div
-                role="img"
-                aria-label={rule.ariaLabel}
-                className="text-muted-foreground bg-muted/40 flex aspect-square w-full items-center justify-center rounded-md p-3"
-              >
-                {rule.svg}
-              </div>
+              <figure className="flex flex-col">
+                <div
+                  role="img"
+                  aria-label={rule.ariaLabel}
+                  className="text-muted-foreground bg-muted/40 flex aspect-square w-full items-center justify-center rounded-md p-3"
+                >
+                  {rule.svg}
+                </div>
+                <figcaption className="sr-only">
+                  Illustration zur ABCDE-Regel, Buchstabe {rule.letter}:{" "}
+                  {rule.name}.
+                </figcaption>
+              </figure>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {rule.text}
               </p>

@@ -15,9 +15,9 @@ import {
 } from "@/components/ui/table";
 
 export const metadata = {
-  title: "Risiken – AI Melanom Check",
+  title: "Risikoregister – AI Melanom Check",
   description:
-    "Risikoregister: bekannte Fehler- und Missbrauchsszenarien der Demo mit zugeordneten Gegenmaßnahmen in der App. Schwerebewertung und konkrete Schutzmaßnahmen.",
+    "Bekannte Risiken des KI-Modells und Gegenmaßnahmen – transparent dokumentiert nach EU AI Act.",
   alternates: { canonical: "/risk" },
 };
 
@@ -75,6 +75,22 @@ const RISKS: RiskRow[] = [
     consequence: "Versäumte Früherkennung",
     severity: "Hoch",
     mitigation: "Prominenter Disclaimer, kein Screening-Versprechen",
+  },
+  {
+    risk: "Bias bei dunklen Hauttönen (Fitzpatrick V–VI)",
+    consequence:
+      "Deutlich schlechtere Klassifikationsgenauigkeit bei Menschen mit dunkler Haut – ROC-AUC-Drop von 27–36 % dokumentiert (Daneshjou et al., 2022)",
+    severity: "Hoch",
+    mitigation:
+      "Expliziter Hinweis in Modellkarte, Methoden-Seite und Demo-Ergebnis. Nutzer werden auf diese Limitation hingewiesen.",
+  },
+  {
+    risk: "Das Modell findet immer einen Treffer",
+    consequence:
+      "Jedes hochgeladene Bild wird einer der 7 Kategorien zugeordnet, auch ein völlig gesundes Muttermal. Das System gibt keine „unauffällig“-Antwort.",
+    severity: "Hoch",
+    mitigation:
+      "Prominenter Hinweis in der Demo und auf der Methoden-Seite. Ampel-System kommuniziert Unsicherheit, ersetzt aber keine Aussage über Gesundheit.",
   },
 ];
 

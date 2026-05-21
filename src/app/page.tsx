@@ -132,18 +132,18 @@ export default function Home() {
               </div>
             </div>
 
-            <figure
-              aria-hidden="true"
-              className="relative hidden aspect-square w-full max-w-md justify-self-end lg:block"
-            >
+            <figure className="relative hidden aspect-square w-full max-w-md justify-self-end lg:block">
               <div className="absolute inset-0 animate-in fade-in duration-1000">
                 <svg
                   viewBox="0 0 400 400"
+                  role="img"
+                  aria-label="Schematische Dermatoskop-Ansicht: konzentrische Kreise mit Fadenkreuz visualisieren den Bildausschnitt einer dermatoskopischen Aufnahme."
                   className="h-full w-full"
                   fill="none"
                   stroke="currentColor"
                 >
                   <g
+                    aria-hidden="true"
                     className="text-primary/30"
                     strokeWidth="0.75"
                   >
@@ -156,7 +156,7 @@ export default function Home() {
                       />
                     ))}
                   </g>
-                  <g className="text-primary" strokeWidth="1.5">
+                  <g aria-hidden="true" className="text-primary" strokeWidth="1.5">
                     <circle cx="200" cy="200" r="84" />
                     <circle cx="200" cy="200" r="36" />
                     <circle
@@ -168,6 +168,7 @@ export default function Home() {
                     />
                   </g>
                   <g
+                    aria-hidden="true"
                     className="text-foreground/40"
                     strokeWidth="0.5"
                     strokeDasharray="2 4"

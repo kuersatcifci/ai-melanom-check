@@ -1,9 +1,9 @@
 import DemoClient from "./DemoClient";
 
 export const metadata = {
-  title: "Live-Demo – AI Melanom Check",
+  title: "Muttermal-Check – AI Melanom Check",
   description:
-    "Live-Demo zur Hautläsionsklassifikation: Bild in den Browser laden, Vision-Transformer-Modell läuft lokal ohne Server-Upload, Ergebnis als Ampel-Lesart.",
+    "KI-basierte Hautläsionsklassifikation im Browser. Kein Upload, keine Diagnose, vollständig lokal.",
   alternates: { canonical: "/demo" },
 };
 
