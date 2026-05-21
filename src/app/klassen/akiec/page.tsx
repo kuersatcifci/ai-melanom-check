@@ -8,9 +8,9 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Aktinische Keratose & Morbus Bowen (AKIEC) – Melanom.Check",
+  title: "Aktinische Keratose & Morbus Bowen (AKIEC) – AI Melanom Check",
   description:
-    "Aktinische Keratose und Morbus Bowen — Frühformen des Plattenepithelkarzinoms: typische Merkmale, Häufigkeit, Risikofaktoren und regulatorische Einordnung für KI-Klassifikation. Stand Mai 2026, Quellen AWMF, RKI, DKFZ.",
+    "Aktinische Keratose und Morbus Bowen, Frühformen des Plattenepithelkarzinoms: Merkmale, Häufigkeit, Risikofaktoren und regulatorische KI-Einordnung.",
   alternates: { canonical: "/klassen/akiec" },
 };
 

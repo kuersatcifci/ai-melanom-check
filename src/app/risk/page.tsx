@@ -17,7 +17,8 @@ import {
 export const metadata = {
   title: "Risiken – AI Melanom Check",
   description:
-    "Risikoregister: bekannte Fehler- und Missbrauchsszenarien und die in der App umgesetzten Gegenmaßnahmen.",
+    "Risikoregister: bekannte Fehler- und Missbrauchsszenarien der Demo mit zugeordneten Gegenmaßnahmen in der App. Schwerebewertung und konkrete Schutzmaßnahmen.",
+  alternates: { canonical: "/risk" },
 };
 
 type Severity = "Hoch" | "Mittel" | "Niedrig";

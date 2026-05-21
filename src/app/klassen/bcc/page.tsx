@@ -8,9 +8,9 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Basalzellkarzinom (BCC) – Melanom.Check",
+  title: "Basalzellkarzinom (BCC) – AI Melanom Check",
   description:
-    "Basalzellkarzinom (heller Hautkrebs): typische Merkmale, Häufigkeit in Deutschland, Risikofaktoren und regulatorische Einordnung für KI-Klassifikation. Stand Mai 2026, Quellen AWMF, RKI, DKFZ.",
+    "Basalzellkarzinom (heller Hautkrebs): Merkmale, Häufigkeit, Risikofaktoren und regulatorische KI-Einordnung. AWMF- und RKI-Quellen. Stand Mai 2026.",
   alternates: { canonical: "/klassen/bcc" },
 };
 

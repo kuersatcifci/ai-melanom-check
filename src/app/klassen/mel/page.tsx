@@ -8,9 +8,9 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Malignes Melanom (MEL) – Melanom.Check",
+  title: "Malignes Melanom (MEL) – AI Melanom Check",
   description:
-    "Malignes Melanom (schwarzer Hautkrebs): typische Merkmale, ABCDE-Regel, Häufigkeit in Deutschland, Risikofaktoren und regulatorische Einordnung für KI-Klassifikation. Stand Mai 2026, Quellen AWMF, RKI, DKFZ.",
+    "Malignes Melanom (schwarzer Hautkrebs): Merkmale, ABCDE-Regel, Häufigkeit in Deutschland, Risikofaktoren und regulatorische KI-Einordnung. Stand Mai 2026.",
   alternates: { canonical: "/klassen/mel" },
 };
 

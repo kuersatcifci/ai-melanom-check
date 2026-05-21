@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Datenschutz – AI Melanom Check",
+  description:
+    "Datenschutz nach DSGVO: keine Speicherung hochgeladener Bilder, lokale Browser-Inferenz, keine Tracking-Cookies, Server-Logs beim Hosting in Frankfurt.",
+  alternates: { canonical: "/datenschutz" },
+  robots: { index: false, follow: true },
+};
+
 export default function DatenschutzPage() {
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-16">

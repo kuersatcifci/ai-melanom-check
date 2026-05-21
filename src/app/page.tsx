@@ -10,6 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+export const metadata = {
+  title: "Browser-KI für Hautläsionen – AI Melanom Check",
+  description:
+    "Browser-basierte KI-Demo zur Hautläsionsklassifikation. Lokale Inferenz ohne Upload, sieben HAM10000-Klassen, EU-AI-Act-Compliance-Demonstrator.",
+  alternates: { canonical: "/" },
+};
+
 const FACTS = [
   {
     icon: LockKeyhole,

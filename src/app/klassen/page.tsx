@@ -3,9 +3,9 @@ import { ArrowRight } from "lucide-react";
 import { CLASSES } from "@/lib/classes";
 
 export const metadata = {
-  title: "Hautläsionen im Überblick – Melanom.Check",
+  title: "Hautläsionen im Überblick – AI Melanom Check",
   description:
-    "Sieben dermatoskopische Kategorien aus dem HAM10000-Datensatz — von gutartig bis bösartig. Übersicht aller HAM10000-Klassen mit Direktlinks zu detaillierten Beschreibungen.",
+    "Sieben dermatoskopische Kategorien aus dem HAM10000-Datensatz: von gutartig bis bösartig mit Direktlinks zu detaillierten Beschreibungen und APA-7-Quellen.",
   alternates: { canonical: "/klassen" },
 };
 

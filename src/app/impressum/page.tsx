@@ -1,3 +1,11 @@
+export const metadata = {
+  title: "Impressum – AI Melanom Check",
+  description:
+    "Impressum gemäß § 5 TMG: Kürsat Cifci, Mörfelden-Walldorf — Kontakt und Verantwortlicher für die KI-Demonstrator-Webanwendung AI Melanom Check.",
+  alternates: { canonical: "/impressum" },
+  robots: { index: false, follow: true },
+};
+
 export default function ImpressumPage() {
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-16">

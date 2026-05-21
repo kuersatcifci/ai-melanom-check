@@ -8,9 +8,9 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Melanozytärer Nävus (NV) – Melanom.Check",
+  title: "Melanozytärer Nävus (NV) – AI Melanom Check",
   description:
-    "Melanozytärer Nävus (Muttermal, Leberfleck): typische Merkmale, ABCDE-Regel zur Selbstbeobachtung, Häufigkeit, Risikofaktoren und regulatorische Einordnung für KI-Klassifikation. Stand Mai 2026, Quellen AWMF, RKI, DKFZ.",
+    "Melanozytärer Nävus (Muttermal): Merkmale, ABCDE-Regel zur Selbstbeobachtung, Häufigkeit, Risikofaktoren und regulatorische KI-Einordnung. Stand Mai 2026.",
   alternates: { canonical: "/klassen/nv" },
 };
 

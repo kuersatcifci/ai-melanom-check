@@ -8,9 +8,9 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Dermatofibrom (DF) – Melanom.Check",
+  title: "Dermatofibrom (DF) – AI Melanom Check",
   description:
-    "Dermatofibrom (Histiozytom): typische Merkmale, Dimple Sign (Fitzpatrick-Zeichen), Häufigkeit, Risikofaktoren und regulatorische Einordnung für KI-Klassifikation. Stand Mai 2026, Quellen AWMF, RKI, DKFZ.",
+    "Dermatofibrom (Histiozytom): Merkmale, Dimple Sign (Fitzpatrick-Zeichen), Häufigkeit, Risikofaktoren und regulatorische KI-Einordnung. Stand Mai 2026.",
   alternates: { canonical: "/klassen/df" },
 };
 
