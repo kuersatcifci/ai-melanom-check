@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/`, lastModified, changeFrequency: "monthly", priority: 1.0 },
     { url: `${SITE_URL}/demo`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/klassen`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/muttermal`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/methods`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/risk`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/impressum`, lastModified, changeFrequency: "yearly", priority: 0.3 },

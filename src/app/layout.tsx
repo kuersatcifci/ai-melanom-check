@@ -90,6 +90,14 @@ export default function RootLayout({
                   </li>
                   <li>
                     <Link
+                      href="/muttermal"
+                      className="hover:text-primary text-foreground underline-offset-4 hover:underline"
+                    >
+                      Muttermale
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       href="/methods"
                       className="hover:text-primary text-foreground underline-offset-4 hover:underline"
                     >
