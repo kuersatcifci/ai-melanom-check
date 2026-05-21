@@ -86,7 +86,7 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="mx-auto flex min-h-[calc(100svh-65px)] w-full max-w-6xl flex-col justify-between gap-12 px-6 py-12 lg:py-16">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12 lg:py-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
             <div className="flex flex-col gap-7 animate-in fade-in slide-in-from-bottom-2 duration-700">
               <div className="text-primary flex items-center gap-3 text-xs uppercase tracking-[0.22em]">

@@ -363,12 +363,11 @@ export function SiteNav() {
         aria-modal="true"
         aria-hidden={!open}
         className={
-          "border-border/60 fixed inset-x-0 top-[65px] bottom-0 z-30 origin-top overflow-y-auto border-t bg-background shadow-2xl transition-all duration-300 md:hidden " +
+          "border-border/60 bg-popover text-popover-foreground fixed inset-x-0 top-[65px] bottom-0 z-30 origin-top overflow-y-auto border-t shadow-2xl transition-all duration-300 md:hidden " +
           (open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0")
         }
-        style={{ backgroundColor: "var(--background)" }}
       >
         <nav
           aria-label="Mobile Navigation"
