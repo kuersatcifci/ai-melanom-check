@@ -13,7 +13,15 @@ import {
 
 type Params = { code: string };
 
-const STATIC_OVERRIDES = new Set(["mel", "bcc", "akiec"]);
+const STATIC_OVERRIDES = new Set([
+  "mel",
+  "bcc",
+  "akiec",
+  "nv",
+  "bkl",
+  "df",
+  "vasc",
+]);
 
 export function generateStaticParams(): Params[] {
   return CLASSES.filter((c) => !STATIC_OVERRIDES.has(c.code)).map((c) => ({
