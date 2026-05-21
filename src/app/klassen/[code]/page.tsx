@@ -14,7 +14,7 @@ import {
 type Params = { code: string };
 
 export function generateStaticParams(): Params[] {
-  return CLASSES.map((c) => ({ code: c.code }));
+  return CLASSES.filter((c) => c.code !== "mel").map((c) => ({ code: c.code }));
 }
 
 export const dynamicParams = false;
