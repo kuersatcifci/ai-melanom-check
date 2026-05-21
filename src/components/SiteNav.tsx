@@ -79,16 +79,58 @@ function DesktopDropdownItem({
 }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<number | null>(null);
   const menuId = useId();
   const active = isItemActive(item, isActive);
 
+  const cancelCloseTimer = () => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openImmediately = () => {
+    cancelCloseTimer();
+    setOpen(true);
+  };
+
+  const closeImmediately = () => {
+    cancelCloseTimer();
+    setOpen(false);
+  };
+
+  const scheduleClose = () => {
+    cancelCloseTimer();
+    closeTimerRef.current = window.setTimeout(() => {
+      setOpen(false);
+      closeTimerRef.current = null;
+    }, 140);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+    };
+  }, []);
+
   useEffect(() => {
     if (!open) return;
+    const close = () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+      setOpen(false);
+    };
     const onClickOutside = (e: MouseEvent) => {
-      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
+      if (!rootRef.current?.contains(e.target as Node)) close();
     };
     const onEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     };
     document.addEventListener("mousedown", onClickOutside);
     document.addEventListener("keydown", onEscape);
@@ -100,7 +142,7 @@ function DesktopDropdownItem({
 
   const onBlurContainer = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!rootRef.current?.contains(e.relatedTarget as Node | null)) {
-      setOpen(false);
+      closeImmediately();
     }
   };
 
@@ -115,7 +157,7 @@ function DesktopDropdownItem({
     (active ? "w-full" : "w-0");
 
   const handleNavigate = () => {
-    setOpen(false);
+    closeImmediately();
     onNavigate();
   };
 
@@ -123,9 +165,9 @@ function DesktopDropdownItem({
     <div
       ref={rootRef}
       className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
+      onMouseEnter={openImmediately}
+      onMouseLeave={scheduleClose}
+      onFocus={openImmediately}
       onBlur={onBlurContainer}
     >
       {item.kind === "linkWithMenu" ? (
@@ -169,40 +211,47 @@ function DesktopDropdownItem({
         </button>
       )}
 
+      {/* Wrapper has pt-2 so the visual gap between trigger and panel
+          is INSIDE the hover/focus container — moving the mouse from
+          trigger to panel never leaves the dropdown root. */}
       <div
-        id={menuId}
-        role="menu"
-        aria-label={item.label}
         className={
-          "border-border/60 bg-background absolute top-full right-0 z-50 mt-2 min-w-[12rem] overflow-hidden rounded-md border shadow-lg transition-all duration-150 " +
+          "absolute top-full right-0 z-50 pt-2 transition-all duration-150 " +
           (open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-1 opacity-0")
         }
       >
-        <ul className="flex flex-col py-1">
-          {item.children.map((child) => {
-            const childActive = isActive(child.href);
-            return (
-              <li key={child.href} role="none">
-                <Link
-                  role="menuitem"
-                  href={child.href}
-                  aria-current={childActive ? "page" : undefined}
-                  onClick={handleNavigate}
-                  className={
-                    "hover:bg-muted block px-4 py-2 text-sm transition-colors " +
-                    (childActive
-                      ? "text-foreground bg-muted/60"
-                      : "text-muted-foreground hover:text-foreground")
-                  }
-                >
-                  {child.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div
+          id={menuId}
+          role="menu"
+          aria-label={item.label}
+          className="border-border/60 bg-popover text-popover-foreground min-w-[12rem] overflow-hidden rounded-md border shadow-lg"
+        >
+          <ul className="flex flex-col py-1">
+            {item.children.map((child) => {
+              const childActive = isActive(child.href);
+              return (
+                <li key={child.href} role="none">
+                  <Link
+                    role="menuitem"
+                    href={child.href}
+                    aria-current={childActive ? "page" : undefined}
+                    onClick={handleNavigate}
+                    className={
+                      "hover:bg-muted block px-4 py-2 text-sm transition-colors " +
+                      (childActive
+                        ? "text-foreground bg-muted/60"
+                        : "text-muted-foreground hover:text-foreground")
+                    }
+                  >
+                    {child.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
@@ -296,17 +345,30 @@ export function SiteNav() {
         </button>
       </div>
 
+      {/* Backdrop: dim + blur the page behind so the menu is clearly the
+          active surface. Sits below the menu (z-20) and is non-interactive. */}
+      <div
+        aria-hidden="true"
+        className={
+          "fixed inset-0 z-20 bg-foreground/30 backdrop-blur-sm transition-opacity duration-300 md:hidden " +
+          (open
+            ? "opacity-100"
+            : "pointer-events-none opacity-0")
+        }
+      />
+
       <div
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
         aria-hidden={!open}
         className={
-          "bg-background fixed inset-x-0 top-[65px] bottom-0 z-30 origin-top overflow-y-auto transition-all duration-300 md:hidden " +
+          "border-border/60 fixed inset-x-0 top-[65px] bottom-0 z-30 origin-top overflow-y-auto border-t bg-background shadow-2xl transition-all duration-300 md:hidden " +
           (open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0")
         }
+        style={{ backgroundColor: "var(--background)" }}
       >
         <nav
           aria-label="Mobile Navigation"
