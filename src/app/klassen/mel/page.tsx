@@ -111,7 +111,11 @@ export default function MelanomaClassPage() {
             </Link>
           </li>
           <li aria-hidden="true">→</li>
-          <li>Klassen</li>
+          <li>
+            <Link href="/klassen" className="hover:text-foreground">
+              Klassen
+            </Link>
+          </li>
           <li aria-hidden="true">→</li>
           <li className="text-foreground">Malignes Melanom</li>
         </ol>
@@ -453,7 +457,7 @@ export default function MelanomaClassPage() {
           Hautveränderungen suchen Sie bitte eine dermatologische Praxis auf.
         </p>
         <Link
-          href="/"
+          href="/klassen"
           className={
             buttonVariants({ variant: "outline", size: "lg" }) +
             " group h-12 self-start px-6 text-sm"

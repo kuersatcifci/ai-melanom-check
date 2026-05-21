@@ -13,8 +13,12 @@ import {
 
 type Params = { code: string };
 
+const STATIC_OVERRIDES = new Set(["mel", "bcc", "akiec"]);
+
 export function generateStaticParams(): Params[] {
-  return CLASSES.filter((c) => c.code !== "mel").map((c) => ({ code: c.code }));
+  return CLASSES.filter((c) => !STATIC_OVERRIDES.has(c.code)).map((c) => ({
+    code: c.code,
+  }));
 }
 
 export const dynamicParams = false;
@@ -52,7 +56,11 @@ export default async function ClassDetailPage({
             </Link>
           </li>
           <li aria-hidden="true">→</li>
-          <li>Klassen</li>
+          <li>
+            <Link href="/klassen" className="hover:text-foreground">
+              Klassen
+            </Link>
+          </li>
           <li aria-hidden="true">→</li>
           <li className="text-foreground">{klass.label}</li>
         </ol>
@@ -157,14 +165,14 @@ export default async function ClassDetailPage({
 
       <div className="border-border/60 mt-2 border-t pt-8">
         <Link
-          href="/"
+          href="/klassen"
           className={
             buttonVariants({ variant: "outline", size: "lg" }) +
             " group h-12 px-6 text-sm"
           }
         >
-          <ArrowLeft className="mr-1.5 h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-          Zurück zur Startseite
+          <ArrowLeft className="mr-1.5 h-4 w-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
+          Alle Klassen
         </Link>
       </div>
     </main>
