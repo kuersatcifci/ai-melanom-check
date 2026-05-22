@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Download, Lock, Shield } from "lucide-react";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { Button } from "@/components/ui/button";
 import {
@@ -262,6 +262,71 @@ export default function DemoClient() {
             keine medizinischen Befunde. Bei echten Hautveränderungen immer
             einen Dermatologen aufsuchen.
           </p>
+        </CardContent>
+      </Card>
+
+      <Card className="border-l-primary border-l-4">
+        <CardHeader>
+          <CardTitle>Wie funktioniert die Analyse?</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-5">
+          <ul className="flex flex-col gap-4">
+            <li className="flex gap-3">
+              <Shield
+                aria-hidden="true"
+                strokeWidth={1.75}
+                className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400"
+              />
+              <span className="text-sm leading-relaxed">
+                <strong className="text-foreground font-semibold">
+                  Ihre Bilder verlassen Ihren Browser nicht.
+                </strong>{" "}
+                Die KI-Analyse läuft vollständig auf Ihrem Gerät – kein
+                Upload, kein Server, keine Datenweitergabe.
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <Download
+                aria-hidden="true"
+                strokeWidth={1.75}
+                className="text-primary mt-0.5 h-5 w-5 shrink-0"
+              />
+              <span className="text-sm leading-relaxed">
+                <strong className="text-foreground font-semibold">
+                  Beim ersten Start wird das KI-Modell heruntergeladen
+                  (83 MB).
+                </strong>{" "}
+                Das Modell wird einmalig von Hugging Face geladen und dann
+                dauerhaft in Ihrem Browser gespeichert. Ab dem zweiten Besuch
+                startet die Analyse sofort – ohne erneuten Download.
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <Lock
+                aria-hidden="true"
+                strokeWidth={1.75}
+                className="text-muted-foreground mt-0.5 h-5 w-5 shrink-0"
+              />
+              <span className="text-sm leading-relaxed">
+                <strong className="text-foreground font-semibold">
+                  Technischer Hintergrund:
+                </strong>{" "}
+                Die Inferenz läuft via ONNX Runtime Web direkt in Ihrem
+                Browser. Weder Bilder noch Ergebnisse werden an externe
+                Server übertragen. Das ist technisch garantiert – nicht nur
+                versprochen.
+              </span>
+            </li>
+          </ul>
+
+          <div className="bg-muted/50 text-muted-foreground rounded-md p-3 text-xs leading-relaxed">
+            <span className="text-foreground font-medium">
+              Datenschutz-Nachweis:
+            </span>{" "}
+            Öffnen Sie die Browser-Entwicklertools (F12 → Network) während
+            der Analyse. Sie werden keine Bild-Uploads sehen – nur den
+            einmaligen Modell-Download.
+          </div>
         </CardContent>
       </Card>
 

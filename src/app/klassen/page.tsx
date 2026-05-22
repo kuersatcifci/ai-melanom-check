@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CLASSES } from "@/lib/classes";
+import { DermatoscopeBg } from "@/components/DermatoscopeBg";
 
 export const metadata = {
   title: "Hautläsionen im Überblick – AI Melanom Check",
@@ -22,7 +23,8 @@ const CLASS_BLURBS: Record<string, string> = {
 
 export default function KlassenIndexPage() {
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-6 py-16">
+    <main className="relative isolate mx-auto flex w-full max-w-5xl flex-col gap-10 overflow-hidden px-6 py-16">
+      <DermatoscopeBg className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[250px] w-[250px] opacity-15 lg:block" />
       <nav aria-label="Breadcrumb" className="text-muted-foreground text-xs">
         <ol className="flex flex-wrap items-center gap-2">
           <li>

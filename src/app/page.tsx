@@ -7,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { CLASSES } from "@/lib/classes";
+import { DermatoscopeBg } from "@/components/DermatoscopeBg";
 import { InfoTooltip } from "@/components/InfoTooltip";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -104,6 +105,8 @@ export default function Home() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
+
+        <DermatoscopeBg className="pointer-events-none absolute -right-32 -top-20 -z-10 hidden h-[500px] w-[500px] opacity-40 lg:block" />
 
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12 lg:py-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
@@ -354,7 +357,8 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-20">
+      <section className="relative isolate mx-auto flex w-full max-w-6xl flex-col gap-8 overflow-hidden px-6 py-20">
+        <DermatoscopeBg className="pointer-events-none absolute -left-20 top-10 -z-10 hidden h-[300px] w-[300px] opacity-20 lg:block" />
         <Card>
           <CardHeader>
             <CardTitle className="font-heading text-2xl">
