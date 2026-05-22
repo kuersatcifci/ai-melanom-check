@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import Link from "next/link";
 import { SiteNav } from "@/components/SiteNav";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -35,9 +36,10 @@ export default function RootLayout({
       className={`${dmSans.variable} ${dmSerifDisplay.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteNav />
-        <div className="flex-1">{children}</div>
-        <footer className="border-t mt-16">
+        <TooltipProvider delay={150}>
+          <SiteNav />
+          <div className="flex-1">{children}</div>
+          <footer className="border-t mt-16">
           <div className="mx-auto w-full max-w-6xl px-6 py-12">
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
               <div className="flex flex-col gap-3">
@@ -166,6 +168,7 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
+        </TooltipProvider>
       </body>
     </html>
   );

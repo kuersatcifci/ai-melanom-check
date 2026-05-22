@@ -7,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { CLASSES } from "@/lib/classes";
+import { InfoTooltip } from "@/components/InfoTooltip";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -28,16 +29,22 @@ const FACTS = [
     icon: LockKeyhole,
     label: "100 % lokal",
     text: "Inferenz im Browser, kein Bild verlässt das Gerät.",
+    tooltip:
+      "Ihre hochgeladenen Bilder werden nie an einen Server übertragen. Die KI-Analyse läuft vollständig in Ihrem Browser – technisch möglich durch ONNX Runtime Web und WebAssembly. Das bedeutet: maximaler Datenschutz, keine Serverkosten, keine Latenz durch Netzwerk.",
   },
   {
     icon: BrainCircuit,
     label: "ViT-Modell",
     text: "Vision-Transformer, INT8-quantisiert via ONNX Runtime.",
+    tooltip:
+      "Vision Transformer (ViT) ist eine moderne KI-Architektur die ursprünglich für Sprachverarbeitung entwickelt wurde und jetzt auch Bilder analysiert. Das Modell wurde auf über 10.000 Hautbilder trainiert. Für die Browser-Nutzung wurde es von 343 MB auf 83 MB komprimiert (INT8-Quantisierung) – ohne wesentlichen Qualitätsverlust.",
   },
   {
     icon: Gauge,
     label: "Ampel-Lesart",
     text: "Grün, Gelb, Rot – verständlich statt rohe Prozente.",
+    tooltip:
+      "Die KI gibt eigentlich Prozentwerte aus – aber diese sind keine medizinischen Wahrscheinlichkeiten. Deshalb übersetzen wir sie in ein Ampelsystem: Grün bedeutet das Modell ordnet das Bild einer unauffälligen Kategorie zu, Gelb bedeutet unsicheres Ergebnis, Rot bedeutet auffällige Kategorie. Die technischen Details sind trotzdem einsehbar.",
   },
 ];
 
@@ -216,6 +223,12 @@ export default function Home() {
                     />
                     <span className="text-xs uppercase tracking-[0.18em]">
                       {fact.label}
+                    </span>
+                    <span className="ml-auto">
+                      <InfoTooltip
+                        label={fact.label}
+                        content={fact.tooltip}
+                      />
                     </span>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">
