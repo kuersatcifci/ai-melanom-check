@@ -91,6 +91,10 @@ export default function MethodsPage() {
         <h1 className="font-heading text-balance text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
           Methoden &amp; Modell
         </h1>
+        <p className="text-muted-foreground font-mono text-xs leading-relaxed tracking-wide">
+          Version 0.1.0 · Stand: Mai 2026 · Modell:{" "}
+          Anwarkh1/Skin_Cancer-Image_Classification · Lizenz: Apache-2.0
+        </p>
         <p className="text-muted-foreground text-base leading-relaxed">
           Hier erklären wir transparent, wie die KI funktioniert, womit sie
           trainiert wurde und was sie nicht kann.
@@ -308,6 +312,31 @@ export default function MethodsPage() {
             echter Nutzung: Art. 9 Risikomanagement, Art. 10 Datenqualität,
             Art. 13 Transparenz, Art. 14 menschliche Aufsicht, Art. 15
             Robustheit.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <h3 className="font-heading text-base font-medium leading-tight">
+            Warum ist diese App kein Hochrisiko-KI-System?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Der EU AI Act stuft KI-Systeme als Hochrisiko ein, wenn sie
+            Sicherheitskomponente eines Medizinprodukts nach MDR sind (Art. 6
+            Abs. 1 i.V.m. Anhang I KI-VO). Diese App ist aus drei Gründen kein
+            Hochrisiko-System:{" "}
+            <strong className="text-foreground font-semibold">Erstens</strong>{" "}
+            verfolgt sie keine medizinische Zweckbestimmung im Sinne von
+            Art. 2 Nr. 1 MDR – sie diagnostiziert nicht, überwacht keine
+            Vitalfunktionen und gibt keine Therapieempfehlungen.{" "}
+            <strong className="text-foreground font-semibold">Zweitens</strong>{" "}
+            wird sie ausschließlich zu Bildungs- und Demonstrationszwecken
+            betrieben.{" "}
+            <strong className="text-foreground font-semibold">Drittens</strong>{" "}
+            ist sie nicht kommerziell. Sobald auch nur eines dieser drei
+            Kriterien entfiele – insbesondere bei einer medizinischen
+            Zweckbestimmung – würde die App automatisch als Hochrisiko-KI
+            gelten und alle Pflichten nach Art. 9–15 KI-VO wären zu erfüllen.
+            Genau dieses Szenario wird auf dieser Seite dokumentiert.
           </p>
         </div>
       </section>

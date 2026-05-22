@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, LockKeyhole, BrainCircuit, Gauge } from "lucide-react";
+import {
+  ArrowRight,
+  BrainCircuit,
+  Gauge,
+  LockKeyhole,
+  ShieldCheck,
+} from "lucide-react";
 import { CLASSES } from "@/lib/classes";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -33,6 +39,12 @@ const FACTS = [
     label: "Ampel-Lesart",
     text: "Grün, Gelb, Rot – verständlich statt rohe Prozente.",
   },
+];
+
+const COMPLIANCE_POINTS = [
+  "Kein Medizinprodukt nach MDR (EU) 2017/745 – keine medizinische Zweckbestimmung",
+  "Kein Hochrisiko-KI-System nach EU AI Act 2024/1689 – Bildungs- und Demonstrationszweck",
+  "Privacy by Design – clientseitige Inferenz, keine Server-Übertragung von Bildern",
 ];
 
 const STEPS = [
@@ -269,6 +281,37 @@ export default function Home() {
             </a>
           </footer>
         </div>
+      </section>
+
+      <section className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-20">
+        <span className="text-primary text-xs uppercase tracking-[0.22em]">
+          Compliance
+        </span>
+        <h2 className="font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+          Regulatorische Einordnung
+        </h2>
+        <ul className="flex flex-col gap-4" role="list">
+          {COMPLIANCE_POINTS.map((point) => (
+            <li key={point} className="flex items-start gap-3">
+              <ShieldCheck
+                aria-hidden="true"
+                strokeWidth={1.5}
+                className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400"
+              />
+              <span className="text-base leading-relaxed">{point}</span>
+            </li>
+          ))}
+        </ul>
+        <Link
+          href="/methods"
+          className="text-primary hover:text-foreground group inline-flex w-fit items-center gap-1 text-sm underline-offset-4 hover:underline"
+        >
+          Vollständige regulatorische Einordnung
+          <ArrowRight
+            aria-hidden="true"
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </Link>
       </section>
 
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-20">

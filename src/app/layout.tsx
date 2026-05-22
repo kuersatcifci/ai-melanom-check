@@ -162,7 +162,7 @@ export default function RootLayout({
             </div>
 
             <p className="text-muted-foreground/70 mt-4 text-xs tracking-wide">
-              Keine Cookies · Kein Tracking
+              Keine Cookies · Kein Tracking · Privacy by Design
             </p>
           </div>
         </footer>
