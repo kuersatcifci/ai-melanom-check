@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
@@ -41,24 +42,6 @@ const NAV: readonly NavItem[] = [
     ],
   },
 ] as const;
-
-function LogoMark({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-    >
-      <circle cx="12" cy="12" r="9.5" />
-      <circle cx="12" cy="12" r="5.5" />
-      <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
 
 type ActiveCheck = (href: string) => boolean;
 
@@ -279,17 +262,15 @@ export function SiteNav() {
         <Link
           href="/"
           aria-label="Zur Startseite"
-          className="group flex items-center gap-2.5"
+          className="group flex items-center"
         >
-          <LogoMark className="text-primary h-6 w-6 transition-transform group-hover:rotate-45 motion-reduce:transition-none motion-reduce:group-hover:rotate-0" />
-          <span className="flex flex-col leading-none">
-            <span className="font-heading text-base font-medium tracking-tight">
-              Melanom<span className="text-primary">.</span>Check
-            </span>
-            <span className="text-muted-foreground mt-0.5 text-[10px] uppercase tracking-[0.18em]">
-              Demonstrator
-            </span>
-          </span>
+          <Image
+            src="/logo.svg"
+            alt="AI Melanom Check"
+            width={130}
+            height={50}
+            priority
+          />
         </Link>
 
         <nav

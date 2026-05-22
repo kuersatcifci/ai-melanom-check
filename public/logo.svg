@@ -1,0 +1,22 @@
+<svg width="680" height="260" viewBox="0 0 680 260" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>AI Melanom Check Logo</title>
+  <desc>Logo mit konzentrischen Kreisen als Dermatoskop-Symbol, medizinisches Blau</desc>
+  <g transform="translate(120, 130)">
+    <circle cx="0" cy="0" r="88" fill="none" stroke="#1a4f8a" stroke-width="0.6" opacity="0.15"/>
+    <circle cx="0" cy="0" r="74" fill="none" stroke="#1a4f8a" stroke-width="0.6" opacity="0.2"/>
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#1a4f8a" stroke-width="0.7" opacity="0.28"/>
+    <circle cx="0" cy="0" r="46" fill="none" stroke="#1a4f8a" stroke-width="0.8" opacity="0.38"/>
+    <circle cx="0" cy="0" r="32" fill="none" stroke="#1a4f8a" stroke-width="1.2" opacity="0.55"/>
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#1a4f8a" stroke-width="1.8" opacity="0.75"/>
+    <line x1="-88" y1="0" x2="88" y2="0" stroke="#1a4f8a" stroke-width="0.5" opacity="0.12"/>
+    <line x1="0" y1="-88" x2="0" y2="88" stroke="#1a4f8a" stroke-width="0.5" opacity="0.12"/>
+    <circle cx="0" cy="0" r="5" fill="#1a4f8a" opacity="0.9"/>
+    <circle cx="18" cy="0" r="3.5" fill="#27ae60"/>
+    <circle cx="-18" cy="0" r="3.5" fill="#e67e22"/>
+    <circle cx="0" cy="-18" r="3.5" fill="#c0392b"/>
+  </g>
+  <text x="240" y="108" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="500" fill="#1a4f8a" letter-spacing="-0.02em">AI Melanom</text>
+  <text x="240" y="162" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="500" fill="#1a4f8a" letter-spacing="-0.02em">Check<tspan fill="#c0392b">.</tspan></text>
+  <text x="242" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" fill="#5a7fa8" letter-spacing="0.18em">Compliance-Demonstrator · EU AI Act</text>
+  <line x1="242" y1="212" x2="620" y2="212" stroke="#1a4f8a" stroke-width="0.8" opacity="0.25"/>
+</svg>

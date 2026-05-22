@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   title: "Melanom.Check – KI-Demonstrator für Hautläsionsklassifikation",
   description:
     "Browser-basierte KI-Demo zur Hautläsionsklassifikation. Vollständig lokale Inferenz, kein Daten-Upload.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
