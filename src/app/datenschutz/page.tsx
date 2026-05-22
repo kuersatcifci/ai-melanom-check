@@ -150,14 +150,23 @@ export default function DatenschutzPage() {
           >
             k_cifci@web.de
           </a>
-          . Ihnen steht zudem ein Beschwerderecht beim Landesbeauftragten für
-          den Datenschutz und die Informationsfreiheit Baden-Württemberg
-          (LfDI BW), Postfach 10 29 32, 70025 Stuttgart,{" "}
+. Ihnen steht zudem ein Beschwerderecht beim Hessischen Beauftragten
+          für Datenschutz und Informationsfreiheit (HBDI), Postfach 3163,
+          65021 Wiesbaden,{" "}
           <a
-            href="mailto:poststelle@lfdi.bwl.de"
+            href="mailto:poststelle@datenschutz.hessen.de"
             className="hover:text-primary underline underline-offset-4"
           >
-            poststelle@lfdi.bwl.de
+            poststelle@datenschutz.hessen.de
+          </a>
+          ,{" "}
+          <a
+            href="https://datenschutz.hessen.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary underline underline-offset-4"
+          >
+            datenschutz.hessen.de
           </a>
           , zu.
         </p>

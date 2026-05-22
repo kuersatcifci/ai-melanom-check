@@ -160,6 +160,10 @@ export default function RootLayout({
               ärztliche Untersuchung. Bei verdächtigen Hautveränderungen suchen
               Sie bitte eine dermatologische Praxis auf.
             </div>
+
+            <p className="text-muted-foreground/70 mt-4 text-xs tracking-wide">
+              Keine Cookies · Kein Tracking
+            </p>
           </div>
         </footer>
       </body>
