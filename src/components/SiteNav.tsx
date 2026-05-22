@@ -279,7 +279,7 @@ export function SiteNav() {
             <circle cx="11.5" cy="16" r="1.5" fill="#e67e22" />
             <circle cx="16" cy="11.5" r="1.5" fill="#c0392b" />
           </svg>
-          <span className="font-heading text-foreground group-hover:text-primary text-lg font-medium tracking-tight transition-colors">
+          <span className="font-heading text-xl tracking-tight text-foreground group-hover:text-primary transition-colors">
             Melanom<span className="text-primary">.</span>Check
           </span>
         </Link>
