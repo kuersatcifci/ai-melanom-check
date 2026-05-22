@@ -117,7 +117,7 @@ export default function Home() {
               </div>
 
               <h1 className="text-balance font-heading text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                AI Melanom Check — KI trifft auf{" "}
+                AI Melanom Check: KI trifft auf{" "}
                 <span className="text-primary italic">Compliance</span>, live im
                 Browser.
               </h1>

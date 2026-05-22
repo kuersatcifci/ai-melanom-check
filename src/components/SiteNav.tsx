@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
@@ -262,15 +261,27 @@ export function SiteNav() {
         <Link
           href="/"
           aria-label="Zur Startseite"
-          className="group flex items-center"
+          className="group flex items-center gap-2.5"
         >
-          <Image
-            src="/logo.svg"
-            alt="AI Melanom Check"
-            width={130}
-            height={50}
-            priority
-          />
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle cx="16" cy="16" r="13" stroke="#1a4f8a" strokeWidth="0.8" opacity="0.3" />
+            <circle cx="16" cy="16" r="9" stroke="#1a4f8a" strokeWidth="0.9" opacity="0.5" />
+            <circle cx="16" cy="16" r="5" stroke="#1a4f8a" strokeWidth="1.1" opacity="0.7" />
+            <circle cx="16" cy="16" r="2" fill="#1a4f8a" opacity="0.9" />
+            <circle cx="20.5" cy="16" r="1.5" fill="#27ae60" />
+            <circle cx="11.5" cy="16" r="1.5" fill="#e67e22" />
+            <circle cx="16" cy="11.5" r="1.5" fill="#c0392b" />
+          </svg>
+          <span className="font-heading text-foreground group-hover:text-primary text-lg font-medium tracking-tight transition-colors">
+            Melanom<span className="text-primary">.</span>Check
+          </span>
         </Link>
 
         <nav
