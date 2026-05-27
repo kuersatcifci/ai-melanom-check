@@ -244,7 +244,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-20">
+      <section className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-16">
         <span className="text-primary text-xs uppercase tracking-[0.22em]">
           Einführung
         </span>
@@ -268,7 +268,7 @@ export default function Home() {
       </section>
 
       <section className="border-border/60 bg-muted/30 border-y">
-        <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-20">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-16">
           <span className="text-primary text-xs uppercase tracking-[0.22em]">
             Über den Entwickler
           </span>
@@ -299,7 +299,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-20">
+      <section className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-16">
         <span className="text-primary text-xs uppercase tracking-[0.22em]">
           Compliance
         </span>
@@ -330,7 +330,7 @@ export default function Home() {
         </Link>
       </section>
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-20">
+      <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-16">
         <div className="flex flex-col gap-3">
           <span className="text-primary text-xs uppercase tracking-[0.22em]">
             Ablauf
@@ -357,7 +357,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="relative isolate mx-auto flex w-full max-w-6xl flex-col gap-8 overflow-hidden px-6 py-20">
+      <section className="relative isolate mx-auto flex w-full max-w-6xl flex-col gap-8 overflow-hidden px-6 py-16">
         <DermatoscopeBg className="pointer-events-none absolute -left-20 top-10 -z-10 hidden h-[300px] w-[300px] opacity-20 lg:block" />
         <Card>
           <CardHeader>
@@ -374,7 +374,7 @@ export default function Home() {
                 <li key={c.code}>
                   <Link
                     href={`/klassen/${c.code}`}
-                    className="border-border/60 hover:border-primary/60 hover:bg-accent/30 group flex h-full flex-col gap-1.5 rounded-md border bg-card p-4 transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="ring-foreground/10 hover:ring-foreground/30 hover:bg-accent/30 group flex h-full flex-col gap-1.5 rounded-md bg-card p-4 ring-1 transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="font-heading group-hover:text-primary text-base font-medium transition-colors">

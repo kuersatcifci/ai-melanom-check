@@ -408,11 +408,18 @@ export default function DemoClient() {
           )}
 
           <div className="flex flex-wrap gap-2">
-            <Button onClick={onAnalyze} disabled={!previewUrl || isBusy}>
+            <Button
+              size="lg"
+              className="h-12 px-6 text-sm"
+              onClick={onAnalyze}
+              disabled={!previewUrl || isBusy}
+            >
               {analyzeLabel}
             </Button>
             <Button
+              size="lg"
               variant="outline"
+              className="h-12 px-6 text-sm"
               onClick={onReset}
               disabled={!previewUrl && !predictions && !error}
             >
@@ -679,11 +686,11 @@ function PhotoCard({
 }) {
   const border =
     tone === "good"
-      ? "border-green-500 dark:border-green-500/70"
+      ? "border-emerald-500 dark:border-emerald-500/70"
       : "border-red-500 dark:border-red-500/70";
   const titleColor =
     tone === "good"
-      ? "text-green-700 dark:text-green-400"
+      ? "text-emerald-700 dark:text-emerald-400"
       : "text-red-700 dark:text-red-400";
   return (
     <div
@@ -720,7 +727,7 @@ function PhotoSvgGood() {
         height="116"
         rx="6"
         fill="none"
-        stroke="#22c55e"
+        stroke="#10b981"
         strokeWidth="2"
       />
       <ellipse cx="60" cy="52" rx="44" ry="32" fill="#f5d0a9" />
