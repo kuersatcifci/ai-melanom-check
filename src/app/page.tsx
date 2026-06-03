@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/card";
 
 export const metadata = {
-  title: "Browser-KI für Hautläsionen – AI Melanom Check",
+  title: "Browser-KI zur Klassifikation von Hautläsionen – Bildungsprojekt",
   description:
     "Browser-basierte KI-Demo zur Hautläsionsklassifikation. Lokale Inferenz ohne Upload, sieben HAM10000-Klassen, EU-AI-Act-Compliance-Demonstrator.",
   alternates: { canonical: "/" },
@@ -58,8 +58,8 @@ const COMPLIANCE_POINTS = [
 const STEPS = [
   {
     n: "01",
-    title: "Bild hochladen",
-    text: "Foto einer Hautveränderung wird in den Browser geladen – ohne Server-Übertragung.",
+    title: "Bild auswählen",
+    text: "Foto einer Hautveränderung wird lokal im Browser geöffnet – keine Server-Übertragung, kein Upload.",
   },
   {
     n: "02",
@@ -117,7 +117,7 @@ export default function Home() {
               </div>
 
               <h1 className="text-balance font-heading text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                AI Melanom Check: KI trifft auf{" "}
+                Hautläsions-Klassifikator: KI trifft auf{" "}
                 <span className="text-primary italic">Compliance</span>, live im
                 Browser.
               </h1>
@@ -252,8 +252,9 @@ export default function Home() {
           Was ist das hier?
         </h2>
         <p className="text-foreground/85 text-base leading-relaxed sm:text-lg">
-          AI Melanom Check ist eine Demonstration künstlicher Intelligenz für
-          die Hautbild-Analyse. Sie laden ein Foto einer Hautstelle hoch. Ein
+          Dies ist eine Demonstration künstlicher Intelligenz für
+          die Hautbild-Analyse. Sie wählen ein Foto einer Hautstelle aus – es
+          bleibt dabei auf Ihrem Gerät und wird nicht hochgeladen. Ein
           trainiertes Computerprogramm vergleicht das Bild mit über 10.000
           dermatoskopischen Aufnahmen, die Hautärztinnen und -ärzte beschriftet
           haben. Das Programm ordnet Ihr Bild einer von sieben Kategorien zu

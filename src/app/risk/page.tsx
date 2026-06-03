@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/table";
 
 export const metadata = {
-  title: "Risikoregister – AI Melanom Check",
+  title: "Risikoregister – KI-Demo (kein Medizinprodukt)",
   description:
     "Bekannte Risiken des KI-Modells und Gegenmaßnahmen – transparent dokumentiert nach EU AI Act.",
   alternates: { canonical: "/risk" },
@@ -50,7 +50,7 @@ const RISKS: RiskRow[] = [
     risk: "Nutzung ungeeigneter Fotos (Smartphone statt Dermatoskop)",
     consequence: "Stark verzerrte Ergebnisse",
     severity: "Hoch",
-    mitigation: "Hinweis vor Upload, Empfehlung für Bildqualität",
+    mitigation: "Hinweis vor der Analyse, Empfehlung für Bildqualität",
   },
   {
     risk: "Übervertrauen in Prozentwerte",

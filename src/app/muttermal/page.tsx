@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 
 export const metadata = {
-  title: "Muttermale verstehen – AI Melanom Check",
+  title: "Muttermale verstehen – KI-Demo (kein Medizinprodukt)",
   description:
     "Wann ist ein Muttermal gefährlich? ABCDE-Regel, Selbstuntersuchung und wann zum Hautarzt. Stand Mai 2026.",
   alternates: { canonical: "/muttermal" },

@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/table";
 
 export const metadata = {
-  title: "Methoden & Modell – AI Melanom Check",
+  title: "Methoden & Modell – KI-Demo (kein Medizinprodukt)",
   description:
-    "Wie funktioniert die KI hinter AI Melanom Check? Trainingsdaten, Modellarchitektur, Limitationen und regulatorische Einordnung – verständlich erklärt.",
+    "Wie funktioniert die KI hinter diesem Hautläsions-Klassifikator? Trainingsdaten, Modellarchitektur, Limitationen und regulatorische Einordnung – verständlich erklärt.",
   alternates: { canonical: "/methods" },
 };
 
@@ -120,8 +120,9 @@ export default function MethodsPage() {
           gehören.
         </p>
         <p className="leading-relaxed">
-          Wenn Sie ein Bild hochladen, vergleicht das Programm es mit allem,
-          was es gelernt hat, und ordnet es der ähnlichsten Kategorie zu.
+          Wenn Sie ein Bild auswählen, vergleicht das Programm es lokal auf
+          Ihrem Gerät mit allem, was es gelernt hat, und ordnet es der
+          ähnlichsten Kategorie zu.
         </p>
 
         <aside

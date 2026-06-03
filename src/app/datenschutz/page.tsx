@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Datenschutz – AI Melanom Check",
+  title: "Datenschutz – KI-Demo (kein Medizinprodukt)",
   description:
     "Datenschutz nach DSGVO: lokale Browser-Inferenz, keine Tracking-Cookies, lokal eingebettete Schriftarten, Hosting in Frankfurt am Main.",
   alternates: { canonical: "/datenschutz" },
@@ -77,12 +77,12 @@ export default function DatenschutzPage() {
 
       <section className="flex flex-col gap-2">
         <h2 className="font-heading text-2xl font-medium tracking-tight">
-          Hochgeladene Bilder
+          Ausgewählte Bilder
         </h2>
         <p className="text-base leading-relaxed">
-          Bilder, die Sie in der Demo hochladen, werden ausschließlich lokal in
-          Ihrem Browser verarbeitet. Es findet keine Übertragung an unsere
-          Server oder Dritte statt. Die Verarbeitung erfolgt clientseitig via
+          Bilder, die Sie in der Demo auswählen, werden ausschließlich lokal in
+          Ihrem Browser verarbeitet und nicht hochgeladen. Es findet keine
+          Übertragung an unsere Server oder Dritte statt. Die Verarbeitung erfolgt clientseitig via
           ONNX Runtime Web. Bilder werden nicht gespeichert. Nach dem Schließen
           des Tabs sind alle Daten unwiederbringlich gelöscht.
         </p>

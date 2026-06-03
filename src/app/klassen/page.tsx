@@ -4,7 +4,7 @@ import { CLASSES } from "@/lib/classes";
 import { DermatoscopeBg } from "@/components/DermatoscopeBg";
 
 export const metadata = {
-  title: "Hautläsionen im Überblick – AI Melanom Check",
+  title: "Hautläsionen im Überblick – KI-Demo (kein Medizinprodukt)",
   description:
     "Sieben dermatoskopische Kategorien erklärt: von Muttermal bis Melanom. Medizinisch fundiert, verständlich für alle.",
   alternates: { canonical: "/klassen" },

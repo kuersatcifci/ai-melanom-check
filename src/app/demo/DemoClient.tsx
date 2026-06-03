@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { CheckCircle2, Download, Lock, Shield } from "lucide-react";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
@@ -12,6 +12,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 
 type Prediction = {
@@ -31,6 +39,40 @@ type SessionRef = {
 type TrafficLight = "green" | "yellow" | "red";
 
 const CONFIDENCE_THRESHOLD = 0.6;
+
+const DEMO_PASSWORD = "jaichdarf";
+const LINKEDIN_URL = "https://www.linkedin.com/in/kuersatcifci/";
+const UNLOCK_STORAGE_KEY = "demo-unlocked";
+
+// Kleiner externer Store: hält die Freischaltung über die Sitzung (sessionStorage)
+// und benachrichtigt React-Komponenten, ohne setState im Effect aufzurufen.
+const unlockListeners = new Set<() => void>();
+
+function subscribeUnlock(cb: () => void) {
+  unlockListeners.add(cb);
+  return () => unlockListeners.delete(cb);
+}
+
+function getUnlockSnapshot() {
+  try {
+    return sessionStorage.getItem(UNLOCK_STORAGE_KEY) === "1" ? "1" : "0";
+  } catch {
+    return "0";
+  }
+}
+
+function getUnlockServerSnapshot() {
+  return "0";
+}
+
+function persistUnlock() {
+  try {
+    sessionStorage.setItem(UNLOCK_STORAGE_KEY, "1");
+  } catch {
+    // sessionStorage nicht verfügbar – Freischaltung gilt dann nur im Speicher
+  }
+  unlockListeners.forEach((listener) => listener());
+}
 
 function getTrafficLight(top: Prediction): TrafficLight {
   if (top.probability <= CONFIDENCE_THRESHOLD) return "yellow";
@@ -58,6 +100,35 @@ export default function DemoClient() {
   const [predictions, setPredictions] = useState<Prediction[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [gateOpen, setGateOpen] = useState(false);
+  const [pwInput, setPwInput] = useState("");
+  const [pwError, setPwError] = useState(false);
+  const unlocked =
+    useSyncExternalStore(
+      subscribeUnlock,
+      getUnlockSnapshot,
+      getUnlockServerSnapshot,
+    ) === "1";
+
+  const onSubmitPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pwInput.trim() === DEMO_PASSWORD) {
+      persistUnlock();
+      setGateOpen(false);
+      setPwInput("");
+      setPwError(false);
+    } else {
+      setPwError(true);
+    }
+  };
+
+  const requestImageSelect = () => {
+    if (!unlocked) {
+      setGateOpen(true);
+      return;
+    }
+    inputRef.current?.click();
+  };
 
   const handleFile = useCallback((file: File) => {
     setError(null);
@@ -85,8 +156,12 @@ export default function DemoClient() {
     if (file) handleFile(file);
   };
 
-  const onDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    if (!unlocked) {
+      setGateOpen(true);
+      return;
+    }
     const file = e.dataTransfer.files?.[0];
     if (file) handleFile(file);
   };
@@ -171,8 +246,8 @@ export default function DemoClient() {
           Live-Demo
         </h1>
         <p className="text-muted-foreground text-base leading-relaxed">
-          Laden Sie ein dermatoskopisches Bild hoch. Die Verarbeitung erfolgt
-          ausschließlich lokal in Ihrem Browser.
+          Wählen Sie ein dermatoskopisches Bild aus. Es wird nicht hochgeladen –
+          die Verarbeitung erfolgt ausschließlich lokal in Ihrem Browser.
         </p>
       </header>
 
@@ -210,10 +285,11 @@ export default function DemoClient() {
                 2
               </span>
               <div className="flex flex-col gap-1">
-                <p className="font-medium">Bild hochladen</p>
+                <p className="font-medium">Bild auswählen</p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Ziehen Sie das Bild in den Bereich unten oder klicken Sie
-                  darauf. JPG oder PNG, maximal 10 MB.
+                  darauf. JPG oder PNG, maximal 10 MB. Das Bild bleibt auf Ihrem
+                  Gerät – es wird nicht hochgeladen.
                 </p>
               </div>
             </li>
@@ -345,11 +421,24 @@ export default function DemoClient() {
             Dermatoskopie-Aufnahmen.
           </p>
 
-          <label
-            htmlFor="file-input"
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label={
+              unlocked
+                ? "Bild auswählen"
+                : "Gesperrt – Passwort erforderlich"
+            }
+            onClick={requestImageSelect}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                requestImageSelect();
+              }
+            }}
             onDragOver={(e) => e.preventDefault()}
             onDrop={onDrop}
-            className="border-muted-foreground/25 hover:border-muted-foreground/50 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed p-8 text-center transition-colors"
+            className="border-muted-foreground/25 hover:border-muted-foreground/50 focus-visible:border-ring focus-visible:ring-ring/50 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed p-8 text-center transition-colors outline-none focus-visible:ring-3"
           >
             {previewUrl ? (
               <div className="relative h-64 w-full">
@@ -361,13 +450,26 @@ export default function DemoClient() {
                   unoptimized
                 />
               </div>
-            ) : (
+            ) : unlocked ? (
               <>
                 <span className="font-medium">
                   Datei hierher ziehen oder klicken
                 </span>
                 <span className="text-muted-foreground text-xs">
                   Das Bild verlässt Ihren Browser nicht.
+                </span>
+              </>
+            ) : (
+              <>
+                <Lock
+                  className="text-muted-foreground h-6 w-6"
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                />
+                <span className="font-medium">Gesperrt</span>
+                <span className="text-muted-foreground text-xs">
+                  Zum Auswählen eines Bildes ist ein Passwort erforderlich –
+                  klicken zum Freischalten.
                 </span>
               </>
             )}
@@ -379,7 +481,7 @@ export default function DemoClient() {
               className="sr-only"
               onChange={onInputChange}
             />
-          </label>
+          </div>
 
           {fileName && (
             <p className="text-muted-foreground text-xs">
@@ -504,6 +606,62 @@ export default function DemoClient() {
           </Card>
         </section>
       )}
+
+      <Dialog
+        open={gateOpen}
+        onOpenChange={(open) => {
+          setGateOpen(open);
+          if (!open) setPwError(false);
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Lock className="h-4 w-4" aria-hidden="true" />
+              Zugang geschützt
+            </DialogTitle>
+            <DialogDescription>
+              Diese Demo darf aus rechtlichen Gründen – Medizinprodukte-Verordnung
+              (MDR, EU 2017/745) – nicht frei öffentlich zugänglich sein. Wenn Sie
+              sie nutzen möchten, kontaktieren Sie mich gerne über{" "}
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+              . Sie erhalten dann das Zugangspasswort.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={onSubmitPassword} className="flex flex-col gap-3">
+            <Input
+              type="password"
+              value={pwInput}
+              onChange={(e) => {
+                setPwInput(e.target.value);
+                setPwError(false);
+              }}
+              placeholder="Passwort"
+              autoFocus
+              aria-invalid={pwError}
+              aria-label="Zugangspasswort"
+            />
+            {pwError && (
+              <p className="text-destructive text-sm" role="alert">
+                Falsches Passwort. Bitte erneut versuchen.
+              </p>
+            )}
+            <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground inline-flex items-center justify-center text-sm underline underline-offset-4"
+              >
+                Auf LinkedIn kontaktieren
+              </a>
+              <Button type="submit">Freischalten</Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }

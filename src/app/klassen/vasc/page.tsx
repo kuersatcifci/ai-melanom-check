@@ -8,7 +8,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Vaskuläre Läsion (VASC) – AI Melanom Check",
+  title: "Vaskuläre Läsion (VASC) – KI-Demo (kein Medizinprodukt)",
   description:
     "Vaskuläre Läsionen — Hämangiome, Kirschangiome, Angiokeratome und pyogene Granulome: Merkmale, Glasspateltest, Häufigkeit und regulatorische KI-Einordnung.",
   alternates: { canonical: "/klassen/vasc" },

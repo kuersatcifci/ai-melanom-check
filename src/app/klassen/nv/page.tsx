@@ -8,7 +8,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Melanozytärer Nävus (NV) – AI Melanom Check",
+  title: "Melanozytärer Nävus (NV) – KI-Demo (kein Medizinprodukt)",
   description:
     "Melanozytärer Nävus (Muttermal): Merkmale, ABCDE-Regel zur Selbstbeobachtung, Häufigkeit, Risikofaktoren und regulatorische KI-Einordnung. Stand Mai 2026.",
   alternates: { canonical: "/klassen/nv" },

@@ -8,7 +8,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Benigne Keratose (BKL) – AI Melanom Check",
+  title: "Benigne Keratose (BKL) – KI-Demo (kein Medizinprodukt)",
   description:
     "Benigne Keratose, seborrhoische Keratose und Lentigo solaris (Altersfleck): Merkmale, Häufigkeit und regulatorische KI-Einordnung. Stand Mai 2026.",
   alternates: { canonical: "/klassen/bkl" },

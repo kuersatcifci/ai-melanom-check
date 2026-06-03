@@ -40,7 +40,7 @@ export async function generateMetadata({
   const klass = CLASSES.find((c) => c.code === code);
   if (!klass) return {};
   return {
-    title: `${klass.label} (${klass.code.toUpperCase()}) – Melanom.Check`,
+    title: `${klass.label} (${klass.code.toUpperCase()}) – KI-Demo (kein Medizinprodukt)`,
     description: klass.description,
   };
 }

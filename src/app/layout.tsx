@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Melanom.Check – KI-Demonstrator für Hautläsionsklassifikation",
+  title: "Hautläsions-Klassifikator (KI-Demo, kein Medizinprodukt nach MDR)",
   description:
     "Browser-basierte KI-Demo zur Hautläsionsklassifikation. Vollständig lokale Inferenz, kein Daten-Upload.",
   icons: {
@@ -49,7 +49,7 @@ export default function RootLayout({
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
               <div className="flex flex-col gap-3">
                 <p className="font-heading text-lg font-medium">
-                  AI Melanom Check
+                  Hautläsions-Klassifikator (KI-Demo)
                 </p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Ein nicht-kommerzielles Studienprojekt von Kürsat Cifci –
@@ -161,7 +161,7 @@ export default function RootLayout({
             </div>
 
             <div className="border-border/60 text-muted-foreground mt-10 border-t pt-6 text-xs leading-relaxed">
-              AI Melanom Check ist eine browserbasierte KI-Demonstration zu
+              Dieser Hautläsions-Klassifikator ist eine browserbasierte KI-Demonstration zu
               Bildungs- und Forschungszwecken. Kein Medizinprodukt nach MDR
               (EU 2017/745). Keine medizinische Diagnose. Ersetzt keine
               ärztliche Untersuchung. Bei verdächtigen Hautveränderungen suchen
