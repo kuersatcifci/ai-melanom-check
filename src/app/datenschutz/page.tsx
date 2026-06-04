@@ -56,10 +56,10 @@ export default function DatenschutzPage() {
           Schriftarten
         </h2>
         <p className="text-base leading-relaxed">
-          Diese Website verwendet DM Serif Display und DM Sans. Beide
-          Schriftarten werden zur Build-Zeit lokal eingebettet via next/font.
-          Es findet keine Verbindung zu Google-Servern oder anderen externen
-          Servern zur Laufzeit statt.
+          Diese Website verwendet die Schriftart Plus Jakarta Sans. Sie wird
+          zur Build-Zeit lokal eingebettet via next/font und von unserem eigenen
+          Server ausgeliefert. Es findet keine Verbindung zu Google-Servern oder
+          anderen externen Servern zur Laufzeit statt.
         </p>
       </section>
 

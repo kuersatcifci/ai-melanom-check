@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, DM_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import { SiteNav } from "@/components/SiteNav";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
-const dmSerifDisplay = DM_Serif_Display({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -39,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${dmSans.variable} ${dmSerifDisplay.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <TooltipProvider delay={150}>
