@@ -37,6 +37,8 @@ export default function DemoClient() {
     predictions,
     error,
     setError,
+    lesionFound,
+    annotatedUrl,
     analyze,
     reset,
   } = useClassifier();
@@ -325,8 +327,12 @@ export default function DemoClient() {
             {previewUrl ? (
               <div className="relative h-64 w-full">
                 <Image
-                  src={previewUrl}
-                  alt="Vorschau der hochgeladenen Läsion"
+                  src={annotatedUrl ?? previewUrl}
+                  alt={
+                    annotatedUrl
+                      ? "Analysiertes Bild mit markierter Läsion"
+                      : "Vorschau der hochgeladenen Läsion"
+                  }
                   fill
                   className="rounded object-contain"
                   unoptimized
@@ -364,6 +370,28 @@ export default function DemoClient() {
               onChange={onInputChange}
             />
           </div>
+
+          {annotatedUrl && (
+            <p className="text-muted-foreground text-xs">
+              Der farbige Rahmen markiert die vom System gefundene und
+              analysierte Stelle.
+            </p>
+          )}
+
+          {lesionFound === false && (
+            <div className="rounded-md border border-amber-600/30 bg-amber-50 p-3 text-sm leading-relaxed text-amber-900 dark:border-amber-400/30 dark:bg-amber-950/40 dark:text-amber-50">
+              <p className="font-medium">
+                Keine abgegrenzte Hautstelle erkannt.
+              </p>
+              <p className="mt-1">
+                Im Bild wurde keine klar umrandete, pigmentierte Stelle
+                gefunden – deshalb gibt das System bewusst keine Einschätzung
+                ab. Fotografieren Sie die Hautveränderung näher und zentriert
+                (nur die Stelle im Bild) bei gutem Licht, oder verwenden Sie
+                eine Dermatoskopie-Aufnahme.
+              </p>
+            </div>
+          )}
 
           {fileName && (
             <p className="text-muted-foreground text-xs">

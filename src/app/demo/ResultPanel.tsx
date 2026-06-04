@@ -11,15 +11,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import type { Backend } from "@/lib/inference";
 import type { Prediction } from "./useClassifier";
-
-type TrafficLight = "green" | "yellow" | "red";
-
-const CONFIDENCE_THRESHOLD = 0.6;
-
-function getTrafficLight(top: Prediction): TrafficLight {
-  if (top.probability <= CONFIDENCE_THRESHOLD) return "yellow";
-  return top.malignant ? "red" : "green";
-}
+import { getTrafficLight, type TrafficLight } from "./traffic-light";
 
 export function ResultPanel({
   predictions,

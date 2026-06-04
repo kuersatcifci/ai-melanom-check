@@ -49,7 +49,7 @@ export async function createSession(
   return { session, backend: "wasm" };
 }
 
-export function preprocess(img: HTMLImageElement): ort.Tensor {
+export function preprocess(img: CanvasImageSource): ort.Tensor {
   const canvas = document.createElement("canvas");
   canvas.width = INPUT_SIZE;
   canvas.height = INPUT_SIZE;
@@ -88,7 +88,7 @@ function softmax(logits: Float32Array | number[]): Float32Array {
 
 export async function classify(
   session: ort.InferenceSession,
-  img: HTMLImageElement,
+  img: CanvasImageSource,
 ): Promise<ClassificationResult> {
   const input = preprocess(img);
   const inputName = session.inputNames[0];

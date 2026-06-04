@@ -3,6 +3,12 @@
 import { useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import type { Backend, ClassificationResult } from "@/lib/inference";
+import {
+  cropToCanvas,
+  detectLesion,
+  drawAnnotated,
+} from "@/lib/lesion-detect";
+import { getTrafficLight, TRAFFIC_COLORS } from "./traffic-light";
 
 export type Prediction = ClassificationResult["probs"][number];
 
@@ -35,6 +41,10 @@ export function useClassifier() {
   const [backend, setBackend] = useState<Backend | null>(null);
   const [predictions, setPredictions] = useState<Prediction[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // null = noch nicht analysiert, false = keine Läsion gefunden, true = gefunden
+  const [lesionFound, setLesionFound] = useState<boolean | null>(null);
+  // Quellbild mit eingezeichneter farbiger Box (nur wenn eine Läsion gefunden wurde)
+  const [annotatedUrl, setAnnotatedUrl] = useState<string | null>(null);
 
   const ensureSession = async (): Promise<SessionRef> => {
     if (sessionRef.current) return sessionRef.current;
@@ -60,17 +70,37 @@ export function useClassifier() {
     if (!previewUrl) return;
     setError(null);
     setPredictions(null);
+    setAnnotatedUrl(null);
+    setLesionFound(null);
     track("analyse_gestartet");
 
     try {
-      const { session } = await ensureSession();
-
-      setPhase("analyzing");
       const img = await loadImage(previewUrl);
-      const { classify } = await import("@/lib/inference");
-      const result = await classify(session, img);
 
+      // Schritt 1: Läsion im Bild lokalisieren (klassische Bildanalyse, kein Modell).
+      const detection = detectLesion(img);
+      if (!detection.found || !detection.box) {
+        setLesionFound(false);
+        track("keine_laesion");
+        return;
+      }
+      setLesionFound(true);
+
+      // Schritt 2: Nur den Ausschnitt um die Läsion klassifizieren.
+      const { session } = await ensureSession();
+      setPhase("analyzing");
+      const crop = cropToCanvas(img, detection.box);
+      const { classify } = await import("@/lib/inference");
+      const result = await classify(session, crop);
       setPredictions(result.probs);
+
+      // Schritt 3: Box farbig (grün/orange/rot) ins Bild zeichnen.
+      const top = [...result.probs].sort(
+        (a, b) => b.probability - a.probability,
+      )[0];
+      const light = getTrafficLight(top);
+      setAnnotatedUrl(drawAnnotated(img, detection.box, TRAFFIC_COLORS[light]));
+
       track("analyse_fertig");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unbekannter Fehler.");
@@ -82,6 +112,8 @@ export function useClassifier() {
   const reset = () => {
     setPredictions(null);
     setError(null);
+    setLesionFound(null);
+    setAnnotatedUrl(null);
   };
 
   return {
@@ -91,6 +123,8 @@ export function useClassifier() {
     predictions,
     error,
     setError,
+    lesionFound,
+    annotatedUrl,
     analyze,
     reset,
   };
