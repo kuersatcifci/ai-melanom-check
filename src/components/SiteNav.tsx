@@ -256,8 +256,13 @@ export function SiteNav() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="border-border/60 bg-background/85 supports-[backdrop-filter]:bg-background/65 sticky top-0 z-40 border-b backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4">
+    <header className="sticky top-0 z-40">
+      {/* Hintergrund + backdrop-blur liegen auf dieser inneren Leiste, NICHT
+          auf dem <header>. Ein backdrop-filter auf dem Header würde sonst zum
+          Containing Block für die fixed-positionierten Mobile-Menü/Backdrop-
+          Elemente und diese auf die Header-Höhe statt aufs Viewport beziehen. */}
+      <div className="border-border/60 bg-background/85 supports-[backdrop-filter]:bg-background/65 border-b backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4">
         <Link
           href="/"
           aria-label="Zur Startseite"
@@ -335,6 +340,7 @@ export function SiteNav() {
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
+        </div>
       </div>
 
       {/* Backdrop: dim + blur the page behind so the menu is clearly the
