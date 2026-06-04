@@ -77,6 +77,29 @@ export default function DatenschutzPage() {
 
       <section className="flex flex-col gap-2">
         <h2 className="font-heading text-2xl font-medium tracking-tight">
+          Reichweitenmessung
+        </h2>
+        <p className="text-base leading-relaxed">
+          Zur statistischen Auswertung der Nutzung setzen wir Vercel Web
+          Analytics ein (Anbieter: Vercel Inc., siehe Abschnitt „Hosting").
+          Die Messung erfolgt cookielos und ohne Wiedererkennung über
+          Geräte- oder Sitzungsgrenzen hinweg. Es werden keine IP-Adressen
+          gespeichert und kein Geräte-Fingerprint gebildet; aus den erhobenen
+          Daten (z. B. aufgerufene Seite, Referrer, Browser- und Gerätetyp,
+          grobe Region) lassen sich keine einzelnen Personen identifizieren.
+          Zusätzlich werden anonyme Ereignisse zur Funktionsnutzung erfasst
+          (Demo freigeschaltet, KI-Modell geladen, Analyse gestartet und
+          abgeschlossen). Die ausgewählten Bilder sowie deren Analyse-Ergebnisse
+          werden dabei ausdrücklich nicht erfasst oder übertragen. Da kein
+          Zugriff auf Endgeräte-Informationen i. S. v. § 25 TDDDG erfolgt, ist
+          keine Einwilligung erforderlich. Rechtsgrundlage: Art. 6 Abs. 1
+          lit. f DSGVO (berechtigtes Interesse an einer datensparsamen
+          Reichweitenmessung).
+        </p>
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="font-heading text-2xl font-medium tracking-tight">
           Ausgewählte Bilder
         </h2>
         <p className="text-base leading-relaxed">

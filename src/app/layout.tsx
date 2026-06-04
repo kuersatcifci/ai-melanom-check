@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import { SiteNav } from "@/components/SiteNav";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
@@ -169,11 +170,12 @@ export default function RootLayout({
             </div>
 
             <p className="text-muted-foreground/70 mt-4 text-xs tracking-wide">
-              Keine Cookies · Kein Tracking · Privacy by Design
+              Keine Cookies · Anonyme Reichweitenmessung · Privacy by Design
             </p>
           </div>
         </footer>
         </TooltipProvider>
+        <Analytics />
       </body>
     </html>
   );

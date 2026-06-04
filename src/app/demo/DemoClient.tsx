@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState, useSyncExternalStore } from "react";
+import { track } from "@vercel/analytics";
 import Image from "next/image";
 import { CheckCircle2, Download, Lock, Shield } from "lucide-react";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
@@ -113,6 +114,7 @@ export default function DemoClient() {
   const onSubmitPassword = (e: React.FormEvent) => {
     e.preventDefault();
     if (pwInput.trim() === DEMO_PASSWORD) {
+      track("demo_freigeschaltet");
       persistUnlock();
       setGateOpen(false);
       setPwInput("");
@@ -182,6 +184,7 @@ export default function DemoClient() {
     const created = await createSession(modelData);
     sessionRef.current = created;
     setBackend(created.backend);
+    track("modell_geladen", { backend: created.backend });
     return created;
   };
 
@@ -190,6 +193,7 @@ export default function DemoClient() {
     setError(null);
     setPredictions(null);
     setDetailsOpen(false);
+    track("analyse_gestartet");
 
     try {
       const { session } = await ensureSession();
@@ -200,6 +204,7 @@ export default function DemoClient() {
       const result = await classify(session, img);
 
       setPredictions(result.probs);
+      track("analyse_fertig");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unbekannter Fehler.");
     } finally {
