@@ -5,11 +5,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { LINKEDIN_URL } from "@/lib/links";
 
 type NavChild = { href: string; label: string };
 
 type NavItem =
-  | { kind: "link"; href: string; label: string; cta?: boolean }
+  | {
+      kind: "link";
+      href: string;
+      label: string;
+      cta?: boolean;
+      external?: boolean;
+    }
   | {
       kind: "linkWithMenu";
       href: string;
@@ -41,6 +48,8 @@ const NAV: readonly NavItem[] = [
       { href: "/risk", label: "Risiken" },
     ],
   },
+  { kind: "link", href: "/ueber-dieses-projekt", label: "Über das Projekt" },
+  { kind: "link", href: LINKEDIN_URL, label: "Kontakt", external: true },
 ] as const;
 
 type ActiveCheck = (href: string) => boolean;
@@ -312,6 +321,19 @@ export function SiteNav() {
                   </Link>
                 );
               }
+              if (item.external) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
               return (
                 <Link
                   key={item.href}
@@ -404,6 +426,20 @@ export function SiteNav() {
                   >
                     {item.label}
                   </Link>
+                );
+              }
+              if (item.external) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="border-border/60 text-muted-foreground hover:text-foreground flex items-baseline justify-between border-b py-4 transition-opacity"
+                  >
+                    <span className="font-heading text-2xl">{item.label}</span>
+                  </a>
                 );
               }
               return (

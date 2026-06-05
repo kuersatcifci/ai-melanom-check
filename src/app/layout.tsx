@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import { SiteNav } from "@/components/SiteNav";
+import { LINKEDIN_URL } from "@/lib/links";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
@@ -56,6 +57,20 @@ export default function RootLayout({
                   className="text-foreground hover:text-primary group inline-flex w-fit items-center gap-1 text-sm underline-offset-4 hover:underline"
                 >
                   kuersatcifci.de
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform group-hover:translate-x-0.5"
+                  >
+                    →
+                  </span>
+                </a>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-primary group inline-flex w-fit items-center gap-1 text-sm underline-offset-4 hover:underline"
+                >
+                  Auf LinkedIn kontaktieren
                   <span
                     aria-hidden="true"
                     className="transition-transform group-hover:translate-x-0.5"

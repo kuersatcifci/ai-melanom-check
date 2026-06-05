@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { persistUnlock } from "./demo-unlock";
+import { LINKEDIN_URL } from "@/lib/links";
 
 const DEMO_PASSWORD = "jaichdarf";
-const LINKEDIN_URL = "https://www.linkedin.com/in/kuersatcifci/";
 
 export function PasswordGate({
   open,
