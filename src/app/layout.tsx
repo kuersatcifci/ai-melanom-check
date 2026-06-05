@@ -102,6 +102,14 @@ export default function RootLayout({
                       Muttermale
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      href="/ueber-dieses-projekt"
+                      className="hover:text-primary text-foreground underline-offset-4 hover:underline"
+                    >
+                      Über dieses Projekt
+                    </Link>
+                  </li>
                 </ul>
               </div>
 

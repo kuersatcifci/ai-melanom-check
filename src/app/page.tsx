@@ -268,6 +268,47 @@ export default function Home() {
         </p>
       </section>
 
+      <section className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-16">
+        <span className="text-primary text-xs uppercase tracking-[0.22em]">
+          Haltung
+        </span>
+        <h2 className="font-heading text-balance text-3xl font-medium leading-[1.15] tracking-tight sm:text-4xl">
+          Diese Demo läuft im Browser. Das ist nicht nur Technik. Das ist eine{" "}
+          <span className="text-primary italic">Position</span>.
+        </h2>
+        <p className="text-foreground/85 text-base leading-relaxed sm:text-lg">
+          Gesundheitstechnologie wird heute fast reflexhaft in der Cloud gebaut.
+          Jeder Klick verlässt das Gerät, jede Inferenz wandert auf einen
+          fremden Server, jede Datei landet in einem Rechenzentrum, dessen
+          Eigentümer wir nicht kennen.
+        </p>
+        <p className="text-base leading-relaxed">Das muss nicht so sein.</p>
+        <p className="text-muted-foreground text-base leading-relaxed">
+          Die grundlegenden Technologien für lokale, datensparsame
+          Gesundheitsanwendungen existieren – Vision Transformer, ONNX Runtime,
+          Quantisierung. Offen, dokumentiert, im Browser lauffähig. Es muss nur
+          jemand bauen.
+        </p>
+        <p className="text-base leading-relaxed">
+          Diese Demo schickt nichts. Sie speichert nichts. Sie ist nicht nur
+          Privacy by Design – sie ist{" "}
+          <span className="text-foreground font-medium">
+            Souveränität by Design
+          </span>
+          .
+        </p>
+        <Link
+          href="/ueber-dieses-projekt"
+          className="text-primary hover:text-foreground group mt-1 inline-flex w-fit items-center gap-1 text-sm underline-offset-4 hover:underline"
+        >
+          Mehr zur Haltung hinter diesem Projekt
+          <ArrowRight
+            aria-hidden="true"
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </Link>
+      </section>
+
       <section className="border-border/60 bg-muted/30 border-y">
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-16">
           <span className="text-primary text-xs uppercase tracking-[0.22em]">
