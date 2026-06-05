@@ -4,11 +4,12 @@ import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 type NavChild = { href: string; label: string };
 
 type NavItem =
-  | { kind: "link"; href: string; label: string }
+  | { kind: "link"; href: string; label: string; cta?: boolean }
   | {
       kind: "linkWithMenu";
       href: string;
@@ -22,7 +23,7 @@ type NavItem =
     };
 
 const NAV: readonly NavItem[] = [
-  { kind: "link", href: "/demo", label: "Ausprobieren" },
+  { kind: "link", href: "/demo", label: "Demo ausprobieren", cta: true },
   {
     kind: "linkWithMenu",
     href: "/klassen",
@@ -296,6 +297,21 @@ export function SiteNav() {
           {NAV.map((item) => {
             if (item.kind === "link") {
               const active = isActive(item.href);
+              if (item.cta) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={
+                      buttonVariants({ variant: "default" }) +
+                      " h-9 px-4 text-sm shadow-sm"
+                    }
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
               return (
                 <Link
                   key={item.href}
@@ -374,6 +390,22 @@ export function SiteNav() {
           {NAV.map((item) => {
             if (item.kind === "link") {
               const active = isActive(item.href);
+              if (item.cta) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={
+                      buttonVariants({ variant: "default" }) +
+                      " h-14 w-full justify-center text-base font-medium shadow-sm"
+                    }
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
               return (
                 <Link
                   key={item.href}
