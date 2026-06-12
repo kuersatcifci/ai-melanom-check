@@ -1,5 +1,6 @@
 import * as ort from "onnxruntime-web/webgpu";
 import { CLASSES, NUM_CLASSES } from "./classes";
+import { TUNING } from "./tuning";
 
 const INPUT_SIZE = 224;
 const MEAN = 0.5;
@@ -72,13 +73,21 @@ export function preprocess(img: CanvasImageSource): ort.Tensor {
   return new ort.Tensor("float32", out, [1, 3, INPUT_SIZE, INPUT_SIZE]);
 }
 
-function softmax(logits: Float32Array | number[]): Float32Array {
+/**
+ * Softmax mit Temperature Scaling: Logits werden vor dem Exponenzieren durch
+ * T geteilt. T > 1 glättet overconfidente Verteilungen (ViT-typisch), die
+ * Klassen-Reihenfolge bleibt unverändert. T = 1 entspricht klassischem Softmax.
+ */
+function softmax(
+  logits: Float32Array | number[],
+  temperature = 1,
+): Float32Array {
   let max = -Infinity;
   for (const v of logits) if (v > max) max = v;
   const exps = new Float32Array(logits.length);
   let sum = 0;
   for (let i = 0; i < logits.length; i++) {
-    const e = Math.exp(logits[i] - max);
+    const e = Math.exp((logits[i] - max) / temperature);
     exps[i] = e;
     sum += e;
   }
@@ -104,7 +113,7 @@ export async function classify(
     );
   }
 
-  const probs = softmax(raw);
+  const probs = softmax(raw, TUNING.temperature);
 
   let topIdx = 0;
   for (let i = 1; i < probs.length; i++) {
