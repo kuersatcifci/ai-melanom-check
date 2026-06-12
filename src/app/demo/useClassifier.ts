@@ -95,10 +95,7 @@ export function useClassifier() {
       setPredictions(result.probs);
 
       // Schritt 3: Box farbig (grün/orange/rot) ins Bild zeichnen.
-      const top = [...result.probs].sort(
-        (a, b) => b.probability - a.probability,
-      )[0];
-      const light = getTrafficLight(top);
+      const light = getTrafficLight(result.probs);
       setAnnotatedUrl(drawAnnotated(img, detection.box, TRAFFIC_COLORS[light]));
 
       track("analyse_fertig");

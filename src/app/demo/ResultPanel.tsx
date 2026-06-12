@@ -25,7 +25,7 @@ export function ResultPanel({
   onToggleDetails: () => void;
 }) {
   const sorted = [...predictions].sort((a, b) => b.probability - a.probability);
-  const trafficLight = getTrafficLight(sorted[0]);
+  const trafficLight = getTrafficLight(predictions);
 
   return (
     <section className="flex flex-col gap-4" aria-live="polite">
