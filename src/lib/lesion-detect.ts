@@ -8,14 +8,11 @@
 // darauf zuschneiden und einen Rahmen einzeichnen können.
 //
 // Bewusst konservativ ausgelegt: im Zweifel lieber "nichts gefunden" als ein
-// falscher Befund. Die Schwellwerte oben sind zum Nachjustieren gedacht.
+// falscher Befund. Die Schwellwerte liegen zentral in lib/tuning.ts.
+
+import { TUNING } from "./tuning";
 
 const WORK_SIZE = 256; // Arbeitsauflösung (längere Kante) für die Analyse
-const MIN_AREA_FRAC = 0.002; // kleinste plausible Läsionsfläche (Anteil am Bild)
-const MAX_AREA_FRAC = 0.7; // größte plausible Läsionsfläche
-const SEPARABILITY_MIN = 0.4; // Otsu-Trennschärfe: < => kein klares Vordergrund/Hintergrund (glatte Haut)
-const DARK_MIN = 16; // mittlere Abdunklung der Stelle ggü. Haut (Luminanz 0..255)
-const COMPACT_MIN = 0.25; // Fläche / Bounding-Box-Fläche: gegen verstreute Haare/Rauschen
 const PAD_FRAC = 0.25; // Rand um die Box beim Zuschneiden (Anteil der Boxgröße)
 
 export type LesionBox = { x: number; y: number; w: number; h: number };
@@ -199,13 +196,32 @@ export function detectFromImageData(
   const boxH = comp.maxY - comp.minY + 1;
   const compactness = comp.area / (boxW * boxH);
   const meanDark = comp.sumDark / comp.area;
+  const aspect = boxW / boxH;
+
+  // Binnenkontrast der Box: echte Läsionen haben Struktur (Pigmentränder),
+  // homogene Schatten und gleichmäßige Verfärbungen kaum.
+  let lumSum = 0;
+  let lumSumSq = 0;
+  const boxN = boxW * boxH;
+  for (let y = comp.minY; y <= comp.maxY; y++) {
+    for (let x = comp.minX; x <= comp.maxX; x++) {
+      const v = lum[y * w + x];
+      lumSum += v;
+      lumSumSq += v * v;
+    }
+  }
+  const lumMean = lumSum / boxN;
+  const lumStd = Math.sqrt(Math.max(0, lumSumSq / boxN - lumMean * lumMean));
 
   const found =
-    separability >= SEPARABILITY_MIN &&
-    meanDark >= DARK_MIN &&
-    areaFrac >= MIN_AREA_FRAC &&
-    areaFrac <= MAX_AREA_FRAC &&
-    compactness >= COMPACT_MIN;
+    separability >= TUNING.separabilityMin &&
+    meanDark >= TUNING.darkMin &&
+    areaFrac >= TUNING.minAreaFrac &&
+    areaFrac <= TUNING.maxAreaFrac &&
+    compactness >= TUNING.compactMin &&
+    lumStd >= TUNING.lumStdMin &&
+    aspect >= TUNING.aspectMin &&
+    aspect <= TUNING.aspectMax;
 
   if (!found) return { found: false, box: null, score: separability };
 
